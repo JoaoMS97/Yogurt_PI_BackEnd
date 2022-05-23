@@ -1216,25 +1216,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Predator\\.nuget\\packages\\": {}
+    "C:\\Users\\leo-b\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Predator\\source\\.Net6\\CadastroUsuario\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\CadastroUsuario.Application.csproj",
+      "projectUniqueName": "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\CadastroUsuario.Application.csproj",
       "projectName": "CadastroUsuario.Application",
-      "projectPath": "C:\\Users\\Predator\\source\\.Net6\\CadastroUsuario\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\CadastroUsuario.Application.csproj",
-      "packagesPath": "C:\\Users\\Predator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Predator\\source\\.Net6\\CadastroUsuario\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\obj\\",
+      "projectPath": "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\CadastroUsuario.Application.csproj",
+      "packagesPath": "C:\\Users\\leo-b\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\Yogurt_PI_BackEnd\\CadastroUsuario.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Predator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leo-b\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -1242,8 +1248,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Predator\\source\\.Net6\\CadastroUsuario\\Yogurt_PI_BackEnd\\CadastroUsuario.Infraestructure\\CadastroUsuario.Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\Predator\\source\\.Net6\\CadastroUsuario\\Yogurt_PI_BackEnd\\CadastroUsuario.Infraestructure\\CadastroUsuario.Infraestructure.csproj"
+            "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\Yogurt_PI_BackEnd\\CadastroUsuario.Infraestructure\\CadastroUsuario.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\leo-b\\Documents\\estudos rodrigo\\Yogurt_PI_BackEnd\\CadastroUsuario.Infraestructure\\CadastroUsuario.Infraestructure.csproj"
             }
           }
         }
@@ -1288,7 +1294,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -1297,7 +1303,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'CommonServiceLocator 1.3.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'CommonServiceLocator 1.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "CommonServiceLocator",
       "targetGraphs": [
         "net6.0"
@@ -1307,7 +1313,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'XAct.Core.PCL 0.0.5014' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net6.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'XAct.Core.PCL 0.0.5014' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "XAct.Core.PCL",
       "targetGraphs": [
         "net6.0"

@@ -54,3 +54,17 @@ C:\Users\Predator\source\.Net6\CadastroUsuario\Yogurt_PI_BackEnd\CadastroUsuario
 C:\Users\Predator\source\.Net6\CadastroUsuario\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.pdb
 C:\Users\Predator\source\.Net6\CadastroUsuario\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.genruntimeconfig.cache
 C:\Users\Predator\source\.Net6\CadastroUsuario\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\ref\CadastroUsuario.Domain.dll
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\bin\Debug\net6.0\CadastroUsuario.Domain.deps.json
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\bin\Debug\net6.0\CadastroUsuario.Domain.runtimeconfig.json
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\bin\Debug\net6.0\CadastroUsuario.Domain.dll
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\bin\Debug\net6.0\CadastroUsuario.Domain.pdb
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.csproj.AssemblyReference.cache
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.AssemblyInfoInputs.cache
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.AssemblyInfo.cs
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.csproj.CoreCompileInputs.cache
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.dll
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\refint\CadastroUsuario.Domain.dll
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.pdb
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\CadastroUsuario.Domain.genruntimeconfig.cache
+C:\Users\leo-b\Documents\estudos rodrigo\Yogurt_PI_BackEnd\CadastroUsuario.Domain\obj\Debug\net6.0\ref\CadastroUsuario.Domain.dll
