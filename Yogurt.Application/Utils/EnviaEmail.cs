@@ -18,7 +18,7 @@ namespace Yogurt.Application.Utils
             mail.CC.Add(new MailAddress(result.Email, "RECEBEDOR"));
             mail.Subject = "Token de acesso";
             mail.Body =
-                $"Olá Usuário!<br/><br/> Seu token de acesso é: {token} <br/> Validade: 1 hora <br/><br/><n> " +
+                $"Olá {result.UserName}!<br/><br/> Seu token de acesso é: {token} <br/> Validade: 1 hora <br/><br/><n> " +
                 $"OBS: Este email não é monitorado</n><br/><br/> Atenciosamente, <br/> Equipe Yogurt.";
             mail.IsBodyHtml = true;
             mail.Priority = MailPriority.High;

@@ -36,22 +36,28 @@ namespace Yogurt.Controllers
             var retorno = await _usuarioService.VerificarToken(token);
 
             if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            {
                 return NotFound(retorno.Mensagem);
+            }
 
             return Ok(retorno.Mensagem);
         }
         
         
-        [HttpPatch("AlterarSenha")]
-        public async Task<IActionResult> AlterarSenha(string email, [FromBody] InputLoginDto inputLoginDto)
+        [HttpGet("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenha(string email)
         {
             var retorno = await _usuarioService.AlterarSenha(email);
 
             if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            {
                 return BadRequest(retorno.Mensagem);
+            }
 
             if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            {
                 return NotFound(retorno.Mensagem);
+            }
 
             return Ok(retorno.Mensagem);
         }
