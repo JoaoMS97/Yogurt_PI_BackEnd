@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
-using iTextSharp;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace Yogurt.Application.Utils
 {
@@ -28,13 +25,6 @@ namespace Yogurt.Application.Utils
             }
 
             return false;
-        }
-
-        public string AddArquivoPdf(string pdf)
-        {
-
-
-            return pdf;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Yogurt.Application.Dto;
+using Yogurt.Domain.Entities;
 
 namespace Yogurt.Application.Interfaces
 {
@@ -8,9 +9,7 @@ namespace Yogurt.Application.Interfaces
 
         Task<RetornoDto> AlterarSenha(string email);
 
-        RetornoDto Inserir(string? email, string? senha);
-
-        Task<RetornoDto> GetById(Guid id);
+        RetornoDto Inserir(string email, string password, string userName, string telefone);
 
         Task<RetornoDto> VerificarToken(Guid token);
 

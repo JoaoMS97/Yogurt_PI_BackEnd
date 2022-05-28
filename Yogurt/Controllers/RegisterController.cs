@@ -17,27 +17,14 @@ namespace Yogurt.Controllers
         }
 
         [HttpPost("Registrar")]
-        public IActionResult Post([FromBody] InputLoginDto inputLoginDto)
+        public IActionResult Post([FromBody] InputRegisterControllerDto inputRegisterControllerDto)
         {
-            var retorno = _usuarioService.Inserir(inputLoginDto.Email, inputLoginDto.Password);
+            var retorno = _usuarioService.Inserir(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
 
             if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
                 return BadRequest(retorno.Mensagem);
 
             return Ok(retorno.Mensagem); 
-        }
-
-        [HttpGet("GetRegistroById")]
-        public async Task<IActionResult> GetById(Guid? id)
-        {
-            var retorno = await _usuarioService.GetById(id.GetValueOrDefault());
-
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.Sucesso))
-            {
-                return Ok(retorno.Objeto);
-            }
-
-            return BadRequest(retorno.Mensagem);
         }
     }
 }

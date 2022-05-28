@@ -18,7 +18,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddDbContext<YogurtContext>(options =>
 {
-    options.UseSqlite("Data Source=C:\\Users\\leo-b\\yogurt-dbCadastroUsuarioProjeto.db");
+    options.UseSqlite("Data Source=C:\\Users\\Predator\\CadastroUsuarioProjeto.db");
 }); 
 
 var app = builder.Build();
