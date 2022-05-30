@@ -43,7 +43,6 @@ namespace Yogurt.Controllers
             return Ok(retorno.Mensagem);
         }
         
-        
         [HttpGet("AlterarSenha")]
         public async Task<IActionResult> AlterarSenha(string email)
         {
