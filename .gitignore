@@ -141,8 +141,6 @@ _NCrunch*
 .vs/CadastroUsuario/v17/.futdcache.v1
 *.v1
 .vs/Yogurt/v17/.suo
-*.dll
-CadastroUsuario.Application/bin/Debug/net6.0/CadastroUsuario.Infraestructure.dll
 *.cache
 CadastroUsuario.Application/obj/Debug/net6.0/CadastroUsuario.Application.csproj.AssemblyReference.cache
 Yogurt.Application/obj/CadastroUsuario.Application.csproj.nuget.g.props
@@ -194,7 +192,6 @@ Yogurt/obj/Yogurt.csproj.nuget.dgspec.json
 Yogurt/obj/Yogurt.csproj.nuget.g.props
 Yogurt/obj/Yogurt.csproj.nuget.g.targets
 .vs/CadastroUsuario/v17/.suo
-Yogurt.Application/Yogurt.Application.csproj
 .idea/.idea.CadastroUsuario/.idea/.name
 .idea/.idea.CadastroUsuario/.idea/encodings.xml
 .idea/.idea.CadastroUsuario/.idea/indexLayout.xml
