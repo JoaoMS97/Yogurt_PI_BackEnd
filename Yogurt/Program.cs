@@ -15,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
+builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
 
 builder.Services.AddDbContext<YogurtContext>(options =>
 {

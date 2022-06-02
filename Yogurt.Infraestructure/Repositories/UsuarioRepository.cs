@@ -5,7 +5,7 @@ using Yogurt.Infraestructure.Repositories.BaseRepository;
 
 namespace Yogurt.Infraestructure.Repositories
 {
-    public class UsuarioRepository : RepositoryBase<UsuarioEntity>, IUsuarioRepository
+    public sealed class UsuarioRepository : RepositoryBase<UsuarioEntity>, IUsuarioRepository
     {
         public UsuarioRepository(YogurtContext context) : base(context)
         {
