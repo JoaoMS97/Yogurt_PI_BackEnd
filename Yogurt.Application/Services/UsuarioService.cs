@@ -15,79 +15,98 @@ namespace Yogurt.Application.Services
             _usuarioRepository = repository;
         }
 
-        public async Task<RetornoDto> RealizarLogin(string? email, string? senha)
+        public async Task<RetornoDto> Login(string? email, string? senha)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
                 return new RetornoDto("Informe o email e a senha para logar no site",
-                    (int)StatusCodeEnum.Retorno.BadRequest);
+                    (int)StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByEmail(email);
 
             if (result == null)
             {
-                return new RetornoDto("Login ou senha inválidos!", (int)StatusCodeEnum.Retorno.NotFound);
+                return new RetornoDto("Login ou senha inválidos!", (int)StatusCodeEnum.Return.NotFound);
             }
 
             return Utilitarios.RetornarHash(senha) != result.Password
-                ? new RetornoDto("Login ou senha inválidos!", (int)StatusCodeEnum.Retorno.BadRequest)
-                : new RetornoDto("Logado com Sucesso!", (int)StatusCodeEnum.Retorno.Sucesso);
+                ? new RetornoDto("Login ou senha inválidos!", (int)StatusCodeEnum.Return.BadRequest)
+                : new RetornoDto("Logado com Sucesso!", (int)StatusCodeEnum.Return.Sucesso);
         }
 
-        public async Task<RetornoDto> AlterarSenha(string email)
+        public async Task<RetornoDto> SendToken(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
-                return new RetornoDto("Informe o login para logar no site", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new RetornoDto("Os campos Email e Senha não podem ser nulos.", (int)StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByEmail(email);
 
             if (result == null)
             {
-                return new RetornoDto("Login inválido!", (int)StatusCodeEnum.Retorno.NotFound);
+                return new RetornoDto("Email inválido!", (int)StatusCodeEnum.Return.NotFound);
             }
 
-            Guid token = Guid.NewGuid();
+            string token = Utilitarios.GenerateToken(email);
 
-            return new RetornoDto(EnviaEmail.EnviarEmail(result, token), (int)StatusCodeEnum.Retorno.Sucesso);
+            _usuarioRepository.UpdateToken(token, result);
+
+            return new RetornoDto(EnviaEmail.SendEmail(result, token), (int)StatusCodeEnum.Return.Sucesso);
         }
 
-        public RetornoDto Inserir(string email, string password, string userName, string telefone)
+        public async Task<RetornoDto> Register(string email, string password, string userName, string telefone)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(telefone))
             {
-                return new RetornoDto(String.Format("Os campos '{0}', '{1}', {2} e {3} não podem ser nulos.", "Email", "Senha", "UserName", "Telefone"),
-                    (int)StatusCodeEnum.Retorno.NotFound);
+                return new RetornoDto("Os campos Email, Senha, UserName e Telefone não podem ser nulos.",
+                    (int)StatusCodeEnum.Return.NotFound); 
+            }
+
+            if(password.Length < 8)
+            {
+                return new RetornoDto("A senha não pode conter menos de 8 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
             }
 
             if (!Utilitarios.VerificarEmail(email))
             {
                 return new RetornoDto("O email informado é invalido! por favor, informe um email válido.",
-                    (int)StatusCodeEnum.Retorno.NotFound);
+                    (int)StatusCodeEnum.Return.NotFound);
             }
 
-            _usuarioRepository.Insert(new UsuarioEntity(email, Utilitarios.RetornarHash(password), userName, telefone));
+            await _usuarioRepository.Insert(new UsuarioEntity(email, Utilitarios.RetornarHash(password), userName, telefone));
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Return.Sucesso);
         }
 
-        public async Task<RetornoDto> VerificarToken(Guid token)
+        public async Task<RetornoDto> VerifyToken(string token, string password)
         {
-            if (token == Guid.Empty)
+            if (token == string.Empty || password == string.Empty)
             {
-                return new RetornoDto("o Campo 'Token' não pode ser nulo.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new RetornoDto("Os campos informados senha e token não pode ser nulo.", (int)StatusCodeEnum.Return.NotFound);
+            }
+
+            if (password.Length < 8)
+            {
+                return new RetornoDto("A senha não pode conter menos de 8 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByToken(token);
 
             if (result == null)
             {
-                return new RetornoDto("O token informado é inválido!", (int)StatusCodeEnum.Retorno.NotFound);
+                return new RetornoDto("O token informado é inválido!", (int)StatusCodeEnum.Return.NotFound);
             }
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, result);
+            if (result.Password == Utilitarios.RetornarHash(password))
+            {
+                return new RetornoDto("A nova senha não pode ser igual a senha atual.", (int)StatusCodeEnum.Return.BadRequest);
+            }
+
+             _usuarioRepository.UpdatePassword(Utilitarios.RetornarHash(password), result);
+
+            return new RetornoDto("Sucesso!", (int)StatusCodeEnum.Return.Sucesso);
         }
     }
 }

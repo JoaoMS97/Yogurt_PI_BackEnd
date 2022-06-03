@@ -17,14 +17,16 @@ namespace Yogurt.Controllers
         }
 
         [HttpPost("Registrar")]
-        public IActionResult Post([FromBody] InputRegisterControllerDto inputRegisterControllerDto)
+        public async Task<IActionResult> Post([FromBody] InputRegisterControllerDto inputRegisterControllerDto)
         {
-            var retorno = _usuarioService.Inserir(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
+            var retorno = await _usuarioService.Register(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
-                return BadRequest(retorno.Mensagem);
+            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            {
+                return BadRequest(retorno.Message);
+            }
 
-            return Ok(retorno.Mensagem); 
+            return Ok(retorno.Message);
         }
     }
 }

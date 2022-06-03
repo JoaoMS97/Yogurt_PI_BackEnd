@@ -6,7 +6,7 @@ namespace Yogurt.Application.Utils
 {
     public class EnviaEmail
     {
-        public static string EnviarEmail(UsuarioEntity result, Guid token)
+        public static string SendEmail(UsuarioEntity result, string token)
         {
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.UseDefaultCredentials = false;

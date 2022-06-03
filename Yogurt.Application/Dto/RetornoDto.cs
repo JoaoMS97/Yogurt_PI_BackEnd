@@ -2,7 +2,7 @@
 {
     public class RetornoDto
     {
-        public string Mensagem { get; set; }
+        public string Message { get; set; }
 
         public int StatusCode { get; set; }
 
@@ -10,13 +10,13 @@
 
         public RetornoDto(string mensagem, int statusCode)
         {
-            Mensagem = mensagem;
+            Message = mensagem;
             StatusCode = statusCode;
         }
 
         public RetornoDto(string mensagem, int statusCode, object objeto)
         {
-            Mensagem = mensagem;
+            Message = mensagem;
             StatusCode = statusCode;
             Objeto = objeto;
         }

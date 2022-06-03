@@ -6,6 +6,12 @@ namespace Yogurt.Infraestructure.Interfaces
     {
         Task<UsuarioEntity?> GetByEmail(string email);
 
-        Task<UsuarioEntity?> GetByToken(Guid token);
+        Task<UsuarioEntity?> GetByUsername(string userName);
+
+        Task<UsuarioEntity?> GetByToken(string token);
+
+        void UpdateToken(string token, UsuarioEntity entity);
+
+        void UpdatePassword(string password, UsuarioEntity entity);
     }
 }

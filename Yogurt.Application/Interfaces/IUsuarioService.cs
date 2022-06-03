@@ -5,13 +5,13 @@ namespace Yogurt.Application.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<RetornoDto> RealizarLogin(string email, string? senha);
+        Task<RetornoDto> Login(string email, string senha);
 
-        Task<RetornoDto> AlterarSenha(string email);
+        Task<RetornoDto> SendToken(string email);
 
-        RetornoDto Inserir(string email, string password, string userName, string telefone);
+        Task<RetornoDto> Register(string email, string password, string userName, string telefone);
 
-        Task<RetornoDto> VerificarToken(Guid token);
+        Task<RetornoDto> VerifyToken(string token, string password);
 
     }
 }

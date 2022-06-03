@@ -8,7 +8,7 @@ namespace Yogurt.Application.Utils
 {
     public class StatusCodeEnum
     {
-        public enum Retorno
+        public enum Return
         {
             Sucesso = 200,
             BadRequest = 400,

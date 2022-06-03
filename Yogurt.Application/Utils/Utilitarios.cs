@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
-using MySql.Data;
-using MySql.Data.MySqlClient;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Yogurt.Application.Utils
 {
@@ -31,23 +32,23 @@ namespace Yogurt.Application.Utils
             return false;
         }
 
-       public static string Testar()
+        public static string GenerateToken(string email)
         {
-            MySqlConnection conexao = new MySqlConnection("server=ns480.hostgator.com.br;User Id=clowto23_User ;database=clowto23_Jovem_Programador; password=DiamantedoRegis.");
+            //Verificar outra forma de criar token temporário
 
-            MySqlCommand comando = new MySqlCommand("insert into clowto23_Jovem_Programador.Usuario () column Idade", conexao);
-            DataTable tabela = new DataTable();
-            try
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                conexao.Open();
-                comando.ExecuteReader();
-            }
-            finally
-            {
-                conexao.Close();
-            }
-
-            return "";
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, email),
+                }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

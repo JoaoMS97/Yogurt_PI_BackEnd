@@ -10,7 +10,14 @@
 
         public string? Telefone { get; set; }
 
-        public Guid? Token { get; set; }
+        public string? Token { get; set; }
+
+        public UsuarioEntity() {}
+
+        public UsuarioEntity(string? token)
+        {
+            Token = token;
+        }
 
         public UsuarioEntity(string? email, string? password, string? userName, string? telefone)
         {
