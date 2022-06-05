@@ -9,9 +9,9 @@ namespace Yogurt.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly IUsuarioService _userService;
+        private readonly IUserService _userService;
 
-        public LoginController(IUsuarioService userService)
+        public LoginController(IUserService userService)
         {
             _userService = userService;
         }

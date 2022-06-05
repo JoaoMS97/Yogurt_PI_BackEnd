@@ -11,38 +11,40 @@ using Yogurt.Infraestructure.Context;
 namespace Yogurt.Infraestructure.Migrations
 {
     [DbContext(typeof(YogurtContext))]
-    [Migration("20220527230326_Alteração_em_UsuarioEntity")]
-    partial class Alteração_em_UsuarioEntity
+    [Migration("20220604195252_INITIAL")]
+    partial class INITIAL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.UsuarioEntity", b =>
+            modelBuilder.Entity("Yogurt.Domain.Entities.UserEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Id_Usuario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
-                    b.Property<Guid?>("Token")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Token")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id_Usuario");
 
-                    b.ToTable("UsuarioEntity");
+                    b.ToTable("Usuario");
                 });
 #pragma warning restore 612, 618
         }

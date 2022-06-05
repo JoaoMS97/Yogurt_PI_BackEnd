@@ -5,10 +5,11 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using MySql.Data.MySqlClient;
 
 namespace Yogurt.Application.Utils
 {
-    public class Utilitarios
+    public class Utils
     {
         public static string RetornarHash(string? senha)
         {
@@ -34,8 +35,6 @@ namespace Yogurt.Application.Utils
 
         public static string GenerateToken(string email)
         {
-            //Verificar outra forma de criar token temporário
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -44,11 +43,32 @@ namespace Yogurt.Application.Utils
                 {
                     new Claim(ClaimTypes.Name, email),
                 }),
-                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        //public static string Testar(string email, string password, string username)
+        //{
+        //    MySqlConnection conexao = new MySqlConnection(Environment.GetEnvironmentVariable("DatabaseConnection"));
+
+        //    MySqlCommand comando = new MySqlCommand("insert into clowto23_Jovem_Programador.Usuario (Email,Password,Username) values (@Email,@Password,@Username)", conexao);
+        //    comando.Parameters.AddWithValue("@Email", email);
+        //    comando.Parameters.AddWithValue("@Password", password);
+        //    comando.Parameters.AddWithValue("@Username", username);
+
+        //    try
+        //    {
+        //        conexao.Open();
+        //        comando.ExecuteReader();
+        //    }
+        //    finally
+        //    {
+        //        conexao.Close();
+        //    }
+
+        //    return "";
+        //}
     }
 }

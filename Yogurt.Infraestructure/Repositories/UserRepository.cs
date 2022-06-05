@@ -5,32 +5,32 @@ using Yogurt.Infraestructure.Repositories.BaseRepository;
 
 namespace Yogurt.Infraestructure.Repositories
 {
-    public class UsuarioRepository : RepositoryBase<UsuarioEntity>, IUsuarioRepository
+    public class UserRepository : RepositoryBase<UserEntity>, IUserRepository
     {
-        public UsuarioRepository(YogurtContext context) : base(context)
+        public UserRepository(YogurtContext context) : base(context)
         {
         }
 
-        public async Task<UsuarioEntity?> GetByEmail(string email)
+        public async Task<UserEntity?> GetByEmail(string email)
         {
-            return YogurtContext.Set<UsuarioEntity>().FirstOrDefault(x => x.Email == email);
+            return YogurtContext.Set<UserEntity>().FirstOrDefault(x => x.Email == email);
         }
 
-        public async Task<UsuarioEntity?> GetByUsername(string userName)
+        public async Task<UserEntity?> GetByUsername(string userName)
         {
-            return YogurtContext.Set<UsuarioEntity>().FirstOrDefault(x => x.UserName == userName);
+            return YogurtContext.Set<UserEntity>().FirstOrDefault(x => x.UserName == userName);
         }
 
-        public async Task<UsuarioEntity?> GetByToken(string token)
+        public async Task<UserEntity?> GetByToken(string token)
         {
-            return YogurtContext.Set<UsuarioEntity>().FirstOrDefault(x => x.Token == token);
+            return YogurtContext.Set<UserEntity>().FirstOrDefault(x => x.Token == token);
         }
 
-        public void UpdateToken(string token, UsuarioEntity entity)
+        public void UpdateToken(string token, UserEntity entity)
         {
             try
             {
-                var result = YogurtContext.UsuarioEntity.FirstOrDefault(item => item.Id == entity.Id);
+                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id_Usuario == entity.Id_Usuario);
 
                 if (entity != null)
                 {
@@ -44,11 +44,11 @@ namespace Yogurt.Infraestructure.Repositories
             }
         }
 
-        public void UpdatePassword(string password, UsuarioEntity entity)
+        public void UpdatePassword(string password, UserEntity entity)
         {
             try
             {
-                var result = YogurtContext.UsuarioEntity.FirstOrDefault(item => item.Id == entity.Id);
+                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id_Usuario == entity.Id_Usuario);
 
                 if (entity != null)
                 {
@@ -61,6 +61,5 @@ namespace Yogurt.Infraestructure.Repositories
                 throw new Exception($"Erro ao salvar a senha no banco de dados. /n StackTrace: {ex}");
             }
         }
-
     }
 }

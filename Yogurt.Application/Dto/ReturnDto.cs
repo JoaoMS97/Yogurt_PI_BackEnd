@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Application.Dto
 {
-    public class RetornoDto
+    public class ReturnDto
     {
         public string Message { get; set; }
 
@@ -8,13 +8,13 @@
 
         public object? Objeto { get; set; }
 
-        public RetornoDto(string mensagem, int statusCode)
+        public ReturnDto(string mensagem, int statusCode)
         {
             Message = mensagem;
             StatusCode = statusCode;
         }
 
-        public RetornoDto(string mensagem, int statusCode, object objeto)
+        public ReturnDto(string mensagem, int statusCode, object objeto)
         {
             Message = mensagem;
             StatusCode = statusCode;

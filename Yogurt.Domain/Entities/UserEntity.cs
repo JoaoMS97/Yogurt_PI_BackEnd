@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Domain.Entities
 {
-    public class UsuarioEntity : EntityBase
+    public class UserEntity : EntityBase
     {
         public string? Email { get; set; }
 
@@ -12,14 +12,14 @@
 
         public string? Token { get; set; }
 
-        public UsuarioEntity() {}
+        public UserEntity() {}
 
-        public UsuarioEntity(string? token)
+        public UserEntity(string? token)
         {
             Token = token;
         }
 
-        public UsuarioEntity(string? email, string? password, string? userName, string? telefone)
+        public UserEntity(string? email, string? password, string? userName, string? telefone)
         {
             Email = email;
             Password = password;
