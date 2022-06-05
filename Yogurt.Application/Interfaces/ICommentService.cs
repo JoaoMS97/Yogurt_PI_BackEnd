@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CadastroUsuario.Domain.Entities
+namespace Yogurt.Application.Interfaces
 {
-    public class ArquivoEntity
+    public interface ICommentService
     {
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CadastroUsuario.Application.Utils
 {
-    public class ConverterArquivo
+    public class ConvertFile
     {
         public byte[] ConverterArquivo_to_binario(string caminhoArquivo)
         {

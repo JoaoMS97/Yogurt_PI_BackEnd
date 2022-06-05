@@ -20,17 +20,14 @@ namespace Yogurt.Application.Utils
 
         private static string ObterSalt(string? senha)
         {
-            if(senha.Length > 5)
+            switch (senha.Length)
             {
-                return Environment.GetEnvironmentVariable("SaltPassword1") + senha;
-            }
-            else if (senha.Length > 10)
-            {
-                return Environment.GetEnvironmentVariable("SaltPassword2") + senha;
-            }
-            else
-            {
-                return Environment.GetEnvironmentVariable("SaltPassword3") + senha;
+                case < 10:
+                    return Environment.GetEnvironmentVariable("SaltPassword1") + senha;
+                case < 15:
+                    return Environment.GetEnvironmentVariable("SaltPassword2") + senha;
+                default:
+                    return Environment.GetEnvironmentVariable("SaltPassword3") + senha;
             }
         }
     }
