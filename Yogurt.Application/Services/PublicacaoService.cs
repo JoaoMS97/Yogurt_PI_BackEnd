@@ -8,8 +8,8 @@ namespace Yogurt.Application.Services;
 public class PublicacaoService : IPublicacaoService
 {
     private readonly IPublicacaoRepository _publicacaoRepository;
-    
-    public PublicacaoService(IPublicacaoRepository publicacaoRepository, IUsuarioRepository usuarioRepository)
+
+    public PublicacaoService(IPublicacaoRepository publicacaoRepository)
     {
         _publicacaoRepository = publicacaoRepository;
     }
@@ -100,5 +100,23 @@ public class PublicacaoService : IPublicacaoService
                 "Não foi possível realizar essa operação, recarregue a página e tente novamente");
 
         return _publicacaoRepository.DecrementarCurtidas(publicacao);
+    }
+
+    public async Task<RetornoDto> SharePublication(Guid id)
+    {
+        var publication = await _publicacaoRepository.GetById(id);
+
+        if (publication == null)
+            return new RetornoDto("Essa publicação não existe mais", (int)StatusCodeEnum.Retorno.NotFound);
+
+        publication.Curtidas = 0;
+        publication.DataCriacao = DateTime.Now;
+        
+        //setar o novo usuario
+        //publication.UsuarioId =  ;
+
+        await _publicacaoRepository.Insert(publication);
+
+        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
     }
 }
