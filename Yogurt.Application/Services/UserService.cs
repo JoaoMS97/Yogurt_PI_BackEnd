@@ -32,7 +32,7 @@ namespace Yogurt.Application.Services
 
             return Utils.Utils.RetornarHash(senha) != result.Password
                 ? new ReturnDto("Login ou senha inválidos!", (int)StatusCodeEnum.Return.BadRequest)
-                : new ReturnDto("Logado com Sucesso!", (int)StatusCodeEnum.Return.Sucesso);
+                : new ReturnDto("Logado com Sucesso!", (int)StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> SendToken(string email)
@@ -53,7 +53,7 @@ namespace Yogurt.Application.Services
 
             _usuarioRepository.UpdateToken(token, result);
 
-            return new ReturnDto(SendEmaill.SendEmail(result, token), (int)StatusCodeEnum.Return.Sucesso);
+            return new ReturnDto(SendEmaill.SendEmail(result, token), (int)StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> Register(string email, string password, string userName, string telefone)
@@ -77,12 +77,12 @@ namespace Yogurt.Application.Services
 
             await _usuarioRepository.Insert(new UserEntity(email, Utils.Utils.RetornarHash(password), userName, telefone));
 
-            return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucesso);
+            return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> VerifyToken(string token, string password)
         {
-            if (token == string.Empty || password == string.Empty)
+            if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(password))
             {
                 return new ReturnDto("Os campos informados senha e token não pode ser nulo.", (int)StatusCodeEnum.Return.NotFound);
             }
@@ -105,10 +105,9 @@ namespace Yogurt.Application.Services
             }
 
             _usuarioRepository.UpdatePassword(Utils.Utils.RetornarHash(password), result);
-
             _usuarioRepository.UpdateToken("", result);
 
-            return new ReturnDto("Sucesso!", (int)StatusCodeEnum.Return.Sucesso);
+            return new ReturnDto("Sucesso!", (int)StatusCodeEnum.Return.Sucess);
         }
     }
 }

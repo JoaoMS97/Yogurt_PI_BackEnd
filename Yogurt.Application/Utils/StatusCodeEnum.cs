@@ -10,7 +10,7 @@ namespace Yogurt.Application.Utils
     {
         public enum Return
         {
-            Sucesso = 200,
+            Sucess = 200,
             BadRequest = 400,
             NotFound = 404
         }

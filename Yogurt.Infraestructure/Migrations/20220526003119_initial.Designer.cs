@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yogurt.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using Yogurt.Infraestructure.Context;
 namespace Yogurt.Infraestructure.Migrations
 {
     [DbContext(typeof(YogurtContext))]
-    partial class YogurtContextModelSnapshot : ModelSnapshot
+    [Migration("20220526003119_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -27,15 +29,10 @@ namespace Yogurt.Infraestructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Telefone")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserName")
+                    b.Property<Guid?>("Token")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

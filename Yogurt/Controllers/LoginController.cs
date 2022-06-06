@@ -30,7 +30,6 @@ namespace Yogurt.Controllers
             return Ok(returns.Message);
         }
 
-
         [HttpGet("ChangePassword")]
         public async Task<IActionResult> ChangePassword(string email)
         {
@@ -63,7 +62,7 @@ namespace Yogurt.Controllers
                 return BadRequest(returns.Message);
             }
 
-            return Ok();
+            return Ok(returns.Message);
         }
     }
 }
