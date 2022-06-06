@@ -58,7 +58,7 @@ namespace Yogurt.Application.Services
 
         public async Task<ReturnDto> Register(string email, string password, string userName, string telefone)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(telefone))
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(userName) || telefone == null)
             {
                 return new ReturnDto("Os campos Email, Senha, UserName e Telefone não podem ser nulos.",
                     (int)StatusCodeEnum.Return.NotFound); 

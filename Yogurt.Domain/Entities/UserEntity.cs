@@ -1,4 +1,7 @@
-﻿namespace Yogurt.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Yogurt.Domain.Entities
 {
     public class UserEntity : EntityBase
     {

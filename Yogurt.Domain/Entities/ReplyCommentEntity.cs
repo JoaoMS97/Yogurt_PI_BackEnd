@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Domain.Entities
 {
-    public class ReplyCommentEntity
+    public class ReplyCommentEntity : EntityBase
     {
         public Guid Id_Resposta { get; set; }
 

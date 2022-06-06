@@ -30,7 +30,7 @@ namespace Yogurt.Infraestructure.Repositories
         {
             try
             {
-                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id_Usuario == entity.Id_Usuario);
+                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id == entity.Id);
 
                 if (entity != null)
                 {
@@ -48,7 +48,7 @@ namespace Yogurt.Infraestructure.Repositories
         {
             try
             {
-                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id_Usuario == entity.Id_Usuario);
+                var result = YogurtContext.Usuario.FirstOrDefault(item => item.Id == entity.Id);
 
                 if (entity != null)
                 {

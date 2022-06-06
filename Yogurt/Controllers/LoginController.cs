@@ -22,12 +22,12 @@ namespace Yogurt.Controllers
             var returns = await _userService.Login(email, password);
 
             if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
-                return NotFound(returns.Message);
+                return NotFound(returns);
 
             if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
-                return BadRequest(returns.Message);
+                return BadRequest(returns);
 
-            return Ok(returns.Message);
+            return Ok(returns);
         }
 
         [HttpGet("ChangePassword")]
@@ -37,15 +37,15 @@ namespace Yogurt.Controllers
 
             if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Message);
+                return BadRequest(returns);
             }
 
             if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Message);
+                return NotFound(returns);
             }
 
-            return Ok(returns.Message);
+            return Ok(returns);
         }
 
         [HttpPatch("SendToken")]
@@ -55,14 +55,14 @@ namespace Yogurt.Controllers
 
             if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Message);
+                return NotFound(returns);
             }
             if(returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Message);
+                return BadRequest(returns);
             }
 
-            return Ok(returns.Message);
+            return Ok(returns);
         }
     }
 }

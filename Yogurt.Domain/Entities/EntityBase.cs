@@ -7,11 +7,11 @@ namespace Yogurt.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public virtual Guid Id_Usuario { get; set; }
+        public virtual Guid Id { get; set; }
 
         public EntityBase()
         {
-            Id_Usuario = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
     }
 }
