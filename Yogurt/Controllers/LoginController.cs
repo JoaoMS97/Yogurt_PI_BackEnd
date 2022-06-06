@@ -9,56 +9,60 @@ namespace Yogurt.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUserService _userService;
 
-        public LoginController(IUsuarioService usuarioService)
+        public LoginController(IUserService userService)
         {
-            _usuarioService = usuarioService;
+            _userService = userService;
         }
 
-        [HttpGet("Logar")]
-        public async Task <IActionResult> Logar(string email, string? senha)
+        [HttpGet("Login")]
+        public async Task<IActionResult> Login(string email, string password)
         {
-            var retorno = await _usuarioService.RealizarLogin(email, senha);
+            var returns = await _userService.Login(email, password);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
-                return NotFound(retorno.Mensagem);
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
+                return NotFound(returns.Message);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
-                return BadRequest(retorno.Mensagem);
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+                return BadRequest(returns.Message);
 
-            return Ok(retorno.Mensagem);
+            return Ok(returns.Message);
         }
 
-        [HttpPost("ValidarToken")]
-        public async Task<IActionResult> ValidarToken(Guid token)
+        [HttpGet("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(string email)
         {
-            var retorno = await _usuarioService.VerificarToken(token);
+            var returns = await _userService.SendToken(email);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return NotFound(retorno.Mensagem);
+                return BadRequest(returns.Message);
             }
 
-            return Ok(retorno.Mensagem);
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
+            {
+                return NotFound(returns.Message);
+            }
+
+            return Ok(returns.Message);
         }
-        
-        [HttpGet("AlterarSenha")]
-        public async Task<IActionResult> AlterarSenha(string email)
+
+        [HttpPatch("SendToken")]
+        public async Task<IActionResult> SendToken(string token, string newPassword)
         {
-            var retorno = await _usuarioService.AlterarSenha(email);
+            var returns = await _userService.VerifyToken(token, newPassword);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return BadRequest(retorno.Mensagem);
+                return NotFound(returns.Message);
+            }
+            if(returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            {
+                return BadRequest(returns.Message);
             }
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
-            {
-                return NotFound(retorno.Mensagem);
-            }
-
-            return Ok(retorno.Mensagem);
+            return Ok(returns.Message);
         }
     }
 }

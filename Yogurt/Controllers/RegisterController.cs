@@ -9,22 +9,24 @@ namespace Yogurt.Controllers
     [Route("[controller]")]
     public class RegisterController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUserService _usuarioService;
 
-        public RegisterController(IUsuarioService usuarioService)
+        public RegisterController(IUserService usuarioService)
         {
             _usuarioService = usuarioService;
         }
 
-        [HttpPost("Registrar")]
-        public IActionResult Post([FromBody] InputRegisterControllerDto inputRegisterControllerDto)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Post([FromBody] InputRegisterControllerDto inputRegisterControllerDto)
         {
-            var retorno = _usuarioService.Inserir(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
+            var retorno = await _usuarioService.Register(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
 
-            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
-                return BadRequest(retorno.Mensagem);
+            if (retorno.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            {
+                return BadRequest(retorno.Message);
+            }
 
-            return Ok(retorno.Mensagem); 
+            return Ok(retorno.Message);
         }
     }
 }
