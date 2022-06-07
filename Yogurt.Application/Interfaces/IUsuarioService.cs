@@ -13,5 +13,13 @@ namespace Yogurt.Application.Interfaces
 
         Task<RetornoDto> VerificarToken(Guid token);
 
+        Task<RetornoDto> AlterarNomeUsuario(string userName);
+
+        Task<RetornoDto> AlterarBiografia(string biografia);
+
+        Task<RetornoDto> AlterarFotoPerfil(string fotoPerfil);
+
+        Task<RetornoDto> AlterarCidade(string cidade);
+
     }
 }
