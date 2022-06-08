@@ -102,7 +102,7 @@ public class PublicacaoService : IPublicacaoService
         return _publicacaoRepository.DecrementarCurtidas(publicacao);
     }
 
-    public async Task<RetornoDto> SharePublication(Guid id)
+    public async Task<RetornoDto> SharePublication(Guid id, Guid usuarioId)
     {
         var publication = await _publicacaoRepository.GetById(id);
 
@@ -111,9 +111,7 @@ public class PublicacaoService : IPublicacaoService
 
         publication.Curtidas = 0;
         publication.DataCriacao = DateTime.Now;
-        
-        //setar o novo usuario
-        //publication.UsuarioId =  ;
+        publication.UsuarioId =  usuarioId;
 
         await _publicacaoRepository.Insert(publication);
 

@@ -25,9 +25,9 @@ public class PublicacaoController : ControllerBase
     }
     
     [HttpPost("CompartilharPublicacaoExistente")]
-    public async Task<IActionResult> PostSharePublication(Guid id)
+    public async Task<IActionResult> PostSharePublication(Guid id, [FromBody] InputPublicacaoDto inputPublicacaoDto)
     {
-        await _publicacaoService.SharePublication(id);
+        await _publicacaoService.SharePublication(id, inputPublicacaoDto.UsuarioId);
         return Ok();
     }
     

@@ -20,5 +20,5 @@ public interface IPublicacaoService
     
     public Task<int> DecrementarCurtidas(Guid id);
 
-    public Task<RetornoDto> SharePublication(Guid id);
+    public Task<RetornoDto> SharePublication(Guid id, Guid usuarioId);
 }
