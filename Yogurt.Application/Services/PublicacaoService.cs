@@ -14,7 +14,7 @@ public class PublicacaoService : IPublicacaoService
         _publicacaoRepository = publicacaoRepository;
     }
 
-    public async Task<RetornoDto> Insert(string? legenda, Guid usuarioId, Guid? comunidadeId)
+    public async Task<ReturnDto> Insert(string? legenda, Guid usuarioId, Guid? comunidadeId)
     {
         var entity =
             InputParaPublicacaoEntity.ConverterInputParaPublicacaoEntity(legenda ?? string.Empty, usuarioId,
@@ -22,64 +22,64 @@ public class PublicacaoService : IPublicacaoService
         
         await _publicacaoRepository.Insert(entity);
 
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess);
     }
 
-    public async Task<RetornoDto> GetById(Guid id)
+    public async Task<ReturnDto> GetById(Guid id)
     {
         var publicacao = await _publicacaoRepository.GetById(id);
 
         if (publicacao == null)
-            return new RetornoDto("Publicação não encontrada", (int)StatusCodeEnum.Retorno.NotFound);
+            return new ReturnDto("Publicação não encontrada", (int)StatusCodeEnum.Return.NotFound);
 
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, publicacao);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess, publicacao);
     }
 
-    public async Task<RetornoDto> GetAll()
+    public async Task<ReturnDto> GetAll()
     {
         var listaDePublicacao = await _publicacaoRepository.GetAll();
 
         if (listaDePublicacao.Any())
-            return new RetornoDto("Publicações não encontradas", (int)StatusCodeEnum.Retorno.NotFound);
+            return new ReturnDto("Publicações não encontradas", (int)StatusCodeEnum.Return.NotFound);
         
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, listaDePublicacao);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess, listaDePublicacao);
     }
 
-    public async Task<RetornoDto> GetByLegenda(string legenda)
+    public async Task<ReturnDto> GetByLegenda(string legenda)
     {
         var listaDePublicacoes = await _publicacaoRepository.GetByLegenda(legenda);
         
         if (listaDePublicacoes.Any())
-            return new RetornoDto("Publicação(ões) não encontrada(as)", 
-                (int)StatusCodeEnum.Retorno.NotFound);
+            return new ReturnDto("Publicação(ões) não encontrada(as)", 
+                (int)StatusCodeEnum.Return.NotFound);
         
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, listaDePublicacoes);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess, listaDePublicacoes);
     }
 
-    public async Task<RetornoDto> Update(Guid id, string legenda)
+    public async Task<ReturnDto> Update(Guid id, string legenda)
     {
         var atualizado = await _publicacaoRepository.Update(id, legenda);
 
         if (!atualizado)
-            return new RetornoDto("Não foi possível atualizar, tente novamente",
-                (int)StatusCodeEnum.Retorno.BadRequest);
+            return new ReturnDto("Não foi possível atualizar, tente novamente",
+                (int)StatusCodeEnum.Return.BadRequest);
 
         var publicacaoAtualizada = await _publicacaoRepository.GetById(id);
 
         if (publicacaoAtualizada == null)
-            return new RetornoDto("Algo de errado aconteceu, tente novamente",
-                (int)StatusCodeEnum.Retorno.BadRequest);
+            return new ReturnDto("Algo de errado aconteceu, tente novamente",
+                (int)StatusCodeEnum.Return.BadRequest);
 
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, publicacaoAtualizada);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess, publicacaoAtualizada);
     }
 
-    public async Task<RetornoDto> Delete(Guid id)
+    public async Task<ReturnDto> Delete(Guid id)
     {
         var deletar = await _publicacaoRepository.Delete(id);
 
         return deletar
-            ? new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso)
-            : new RetornoDto("Não foi possível deletar", (int)StatusCodeEnum.Retorno.BadRequest);
+            ? new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess)
+            : new ReturnDto("Não foi possível deletar", (int)StatusCodeEnum.Return.BadRequest);
     }
 
     public async Task<int> IncrementarCurtidas(Guid id)
@@ -102,12 +102,12 @@ public class PublicacaoService : IPublicacaoService
         return _publicacaoRepository.DecrementarCurtidas(publicacao);
     }
 
-    public async Task<RetornoDto> SharePublication(Guid id, Guid usuarioId)
+    public async Task<ReturnDto> SharePublication(Guid id, Guid usuarioId)
     {
         var publication = await _publicacaoRepository.GetById(id);
 
         if (publication == null)
-            return new RetornoDto("Essa publicação não existe mais", (int)StatusCodeEnum.Retorno.NotFound);
+            return new ReturnDto("Essa publicação não existe mais", (int)StatusCodeEnum.Return.NotFound);
 
         publication.Curtidas = 0;
         publication.DataCriacao = DateTime.Now;
@@ -115,6 +115,6 @@ public class PublicacaoService : IPublicacaoService
 
         await _publicacaoRepository.Insert(publication);
 
-        return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+        return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess);
     }
 }

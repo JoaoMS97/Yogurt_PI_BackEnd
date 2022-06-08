@@ -4,21 +4,21 @@ namespace Yogurt.Application.Interfaces;
 
 public interface IPublicacaoService
 {
-    public Task<RetornoDto> Insert(string legenda, Guid usuarioId, Guid? comunidadeId);
+    public Task<ReturnDto> Insert(string legenda, Guid usuarioId, Guid? comunidadeId);
 
-    public Task<RetornoDto> GetById(Guid id);
+    public Task<ReturnDto> GetById(Guid id);
 
-    public Task<RetornoDto> GetAll();
+    public Task<ReturnDto> GetAll();
 
-    public Task<RetornoDto> GetByLegenda(string legenda);
+    public Task<ReturnDto> GetByLegenda(string legenda);
 
-    public Task<RetornoDto> Update(Guid id, string legenda);
+    public Task<ReturnDto> Update(Guid id, string legenda);
 
-    Task<RetornoDto> Delete(Guid id);
+    Task<ReturnDto> Delete(Guid id);
 
     public Task<int> IncrementarCurtidas(Guid id);
     
     public Task<int> DecrementarCurtidas(Guid id);
 
-    public Task<RetornoDto> SharePublication(Guid id, Guid usuarioId);
+    public Task<ReturnDto> SharePublication(Guid id, Guid usuarioId);
 }

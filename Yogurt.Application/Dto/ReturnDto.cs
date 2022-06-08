@@ -23,9 +23,9 @@
             Objeto = objeto;
         }
         
-        public RetornoDto(string mensagem, int statusCode, List<object?> listaDeObjetos)
+        public ReturnDto(string mensagem, int statusCode, List<object?> listaDeObjetos)
         {
-            Mensagem = mensagem;
+            Message = mensagem;
             StatusCode = statusCode;
             ListaDeObjetos = listaDeObjetos;
         }
