@@ -13,7 +13,7 @@ namespace Yogurt.Infraestructure.Repositories
 
         public async Task<UserEntity?> GetByEmail(string email)
         {
-            return YogurtContext.Set<UserEntity>().FirstOrDefault(x => x.Email == email);
+            return YogurtContext.Set<UserEntity>().FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
         }
 
         public async Task<UserEntity?> GetByUsername(string userName)

@@ -3,7 +3,7 @@ using Yogurt.Application.Interfaces;
 using Yogurt.Application.Utils;
 using Yogurt.Dto;
 
-namespace Yogurt.Controllers
+namespace Yogurt.Controllers.User
 {
     [ApiController]
     [Route("[controller]")]
@@ -21,7 +21,7 @@ namespace Yogurt.Controllers
         {
             var returns = await _userService.Register(inputRegisterControllerDto.Email, inputRegisterControllerDto.Password, inputRegisterControllerDto.UserName, inputRegisterControllerDto.Telefone);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns);
             }

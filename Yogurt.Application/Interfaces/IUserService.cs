@@ -13,5 +13,7 @@ namespace Yogurt.Application.Interfaces
 
         Task<ReturnDto> VerifyToken(string token, string password);
 
+        Task<ReturnDto> DeleteUser(Guid? userId, string? password);
+
     }
 }

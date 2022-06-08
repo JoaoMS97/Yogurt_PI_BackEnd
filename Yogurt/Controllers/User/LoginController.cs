@@ -3,7 +3,7 @@ using Yogurt.Application.Interfaces;
 using Yogurt.Application.Utils;
 using Yogurt.Dto;
 
-namespace Yogurt.Controllers
+namespace Yogurt.Controllers.User
 {
     [ApiController]
     [Route("[controller]")]
@@ -21,10 +21,10 @@ namespace Yogurt.Controllers
         {
             var returns = await _userService.Login(email, password);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.NotFound))
                 return NotFound(returns);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
                 return BadRequest(returns);
 
             return Ok(returns);
@@ -35,12 +35,12 @@ namespace Yogurt.Controllers
         {
             var returns = await _userService.SendToken(email);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns);
             }
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.NotFound))
             {
                 return NotFound(returns);
             }
@@ -53,11 +53,11 @@ namespace Yogurt.Controllers
         {
             var returns = await _userService.VerifyToken(token, newPassword);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.NotFound))
             {
                 return NotFound(returns);
             }
-            if(returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns);
             }

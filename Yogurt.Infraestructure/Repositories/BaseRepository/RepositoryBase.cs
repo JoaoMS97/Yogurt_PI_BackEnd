@@ -22,9 +22,17 @@ namespace Yogurt.Infraestructure.Repositories.BaseRepository
             await _yogurtContext.SaveChangesAsync();
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task RemoveByEntity(T entity)
         {
-            return (await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id))!;
+            _yogurtContext.Remove(entity);
+            await _yogurtContext.SaveChangesAsync();
         }
+
+        public async Task<T?> GetById(Guid id)
+        {
+            return await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+
     }
 }

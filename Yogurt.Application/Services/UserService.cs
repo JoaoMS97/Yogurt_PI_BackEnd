@@ -20,40 +20,40 @@ namespace Yogurt.Application.Services
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
                 return new ReturnDto("Informe o email e a senha para logar no site",
-                    (int)StatusCodeEnum.Return.BadRequest);
+                    StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByEmail(email);
 
             if (result == null)
             {
-                return new ReturnDto("Login ou senha inválidos!", (int)StatusCodeEnum.Return.NotFound);
+                return new ReturnDto("Login ou senha inválidos!", StatusCodeEnum.Return.NotFound);
             }
 
             return Utils.Utils.RetornarHash(senha) != result.Password
-                ? new ReturnDto("Login ou senha inválidos!", (int)StatusCodeEnum.Return.BadRequest)
-                : new ReturnDto("Logado com Sucesso!", (int)StatusCodeEnum.Return.Sucess);
+                ? new ReturnDto("Login ou senha inválidos!", StatusCodeEnum.Return.BadRequest)
+                : new ReturnDto("Logado com Sucesso!", StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> SendToken(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
-                return new ReturnDto("Os campos Email e Senha não podem ser nulos.", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("Os campos Email e Senha não podem ser nulos.", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByEmail(email);
 
             if (result == null)
             {
-                return new ReturnDto("Email inválido!", (int)StatusCodeEnum.Return.NotFound);
+                return new ReturnDto("Email inválido!", StatusCodeEnum.Return.NotFound);
             }
 
             string token = Utils.Utils.GenerateToken(email);
 
             _usuarioRepository.UpdateToken(token, result);
 
-            return new ReturnDto(SendEmaill.SendEmail(result, token), (int)StatusCodeEnum.Return.Sucess);
+            return new ReturnDto(SendEmaill.SendEmail(result, token), StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> Register(string email, string password, string userName, string telefone)
@@ -61,53 +61,87 @@ namespace Yogurt.Application.Services
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(userName) || telefone == null)
             {
                 return new ReturnDto("Os campos Email, Senha, UserName e Telefone não podem ser nulos.",
-                    (int)StatusCodeEnum.Return.NotFound); 
+                    StatusCodeEnum.Return.NotFound); 
             }
 
             if(password.Length < 8)
             {
-                return new ReturnDto("A senha não pode conter menos de 8 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("A senha não pode conter menos de 8 caractéres.", StatusCodeEnum.Return.BadRequest);
             }
 
             if (!Utils.Utils.VerificarEmail(email))
             {
                 return new ReturnDto("O email informado é invalido! por favor, informe um email válido.",
-                    (int)StatusCodeEnum.Return.NotFound);
+                    StatusCodeEnum.Return.NotFound);
             }
 
             await _usuarioRepository.Insert(new UserEntity(email, Utils.Utils.RetornarHash(password), userName, telefone));
 
-            return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
 
         public async Task<ReturnDto> VerifyToken(string token, string password)
         {
             if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(password))
             {
-                return new ReturnDto("Os campos informados senha e token não pode ser nulo.", (int)StatusCodeEnum.Return.NotFound);
+                return new ReturnDto("Os campos informados senha e token não pode ser nulo.", StatusCodeEnum.Return.NotFound);
             }
 
             if (password.Length < 8)
             {
-                return new ReturnDto("A senha não pode conter menos de 8 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("A senha não pode conter menos de 8 caractéres.", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _usuarioRepository.GetByToken(token);
 
             if (result == null)
             {
-                return new ReturnDto("O token informado é inválido!", (int)StatusCodeEnum.Return.NotFound);
+                return new ReturnDto("O token informado é inválido!", StatusCodeEnum.Return.NotFound);
             }
 
             if (result.Password == Utils.Utils.RetornarHash(password))
             {
-                return new ReturnDto("A nova senha não pode ser igual a senha atual.", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("A nova senha não pode ser igual a senha atual.", StatusCodeEnum.Return.BadRequest);
             }
 
             _usuarioRepository.UpdatePassword(Utils.Utils.RetornarHash(password), result);
             _usuarioRepository.UpdateToken("", result);
 
-            return new ReturnDto("Sucesso!", (int)StatusCodeEnum.Return.Sucess);
+            return new ReturnDto("Sucesso!", StatusCodeEnum.Return.Sucess);
         }
+
+
+        public async Task<ReturnDto> DeleteUser(Guid? userId, string? password) 
+        {
+
+            if (string.IsNullOrEmpty(password) || !userId.HasValue)
+            {
+                return new ReturnDto("Um dos valores necessários para realizar tal ação se encontra nulo.", StatusCodeEnum.Return.BadRequest);
+            }
+
+           var resultUser = await _usuarioRepository.GetById(userId.Value);
+
+            if (resultUser == null)
+            {
+                return new ReturnDto("Usuario não foi encontrado", StatusCodeEnum.Return.NotFound);
+            }
+
+            if (resultUser.Password != Utils.Utils.RetornarHash(password))
+            {
+                return new ReturnDto("Dados do usuario não correspondentes!", StatusCodeEnum.Return.BadRequest);
+            }
+
+            try
+            {
+               await _usuarioRepository.RemoveByEntity(resultUser);
+            }
+            catch (Exception ex)
+            {
+                return new ReturnDto("Houve um erro no processamento do pedido!", StatusCodeEnum.Return.BadRequest);
+            }
+
+
+            return new ReturnDto("Usuario deletado com sucesso!", StatusCodeEnum.Return.Sucess);
+        } 
     }
 }
