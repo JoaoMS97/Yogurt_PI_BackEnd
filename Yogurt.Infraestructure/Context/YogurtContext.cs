@@ -7,6 +7,7 @@ namespace Yogurt.Infraestructure.Context
     {
         public YogurtContext(DbContextOptions options) : base(options) { }
 
+        public DbSet<PublicacaoEntity> Publicacao { get; set; }
         public DbSet<UserEntity> Usuario { get; set; }
 
         public DbSet<CommentEntity> Comentarios { get; set; }

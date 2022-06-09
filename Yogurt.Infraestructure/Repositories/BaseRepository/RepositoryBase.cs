@@ -5,7 +5,7 @@ using Yogurt.Infraestructure.Interfaces;
 
 namespace Yogurt.Infraestructure.Repositories.BaseRepository
 {
-    public class RepositoryBase<T> : IRepositoryAsync<T> where T : EntityBase
+    public abstract class RepositoryBase<T> : IRepositoryAsync<T> where T : EntityBase
     {
         private readonly YogurtContext _yogurtContext;
 
@@ -22,7 +22,7 @@ namespace Yogurt.Infraestructure.Repositories.BaseRepository
             await _yogurtContext.SaveChangesAsync();
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task<T?> GetById(Guid id)
         {
             return await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
         }

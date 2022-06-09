@@ -19,6 +19,8 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IReplyCommentService, ReplyCommentService>();
 builder.Services.AddScoped<IReplyCommentRepository, ReplyCommentRepository>();
+builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
+builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
 
 builder.Services.AddDbContext<YogurtContext>(options =>
 {
