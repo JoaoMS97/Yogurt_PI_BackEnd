@@ -9,6 +9,10 @@ namespace Yogurt.Application.Interfaces
 {
     public interface ICommentService
     {
-        Task<ReturnDto> InsertComment(string Legenda);
+        Task<ReturnDto> InsertComment(Guid idPublicacao, string Legenda);
+
+        Task<ReturnDto> AddLike(Guid idComment);
+
+        Task<ReturnDto> RemoveLike(Guid idComment);
     }
 }

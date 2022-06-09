@@ -20,8 +20,13 @@ namespace Yogurt.Application.Services
             _commentRepository = repository;
         }
 
-        public async Task<ReturnDto> InsertComment(string comment)
+        public async Task<ReturnDto> InsertComment(Guid idPublicacao, string comment)
         {
+            if (idPublicacao == Guid.Empty)
+            {
+                return new ReturnDto("Id da publicação não encontrado!", (int)StatusCodeEnum.Return.BadRequest);
+            }
+
             if (string.IsNullOrEmpty(comment))
             {
                 return new ReturnDto("Não é possível enviar um comentario vazio", (int)StatusCodeEnum.Return.BadRequest);
@@ -37,21 +42,42 @@ namespace Yogurt.Application.Services
             return new ReturnDto("Comentario enviado com sucesso!", (int)StatusCodeEnum.Return.Sucess);
         }
 
-        public async Task<ReturnDto> InsertComment(string comment)
+        public async Task<ReturnDto> AddLike(Guid idComment)
         {
-            if (string.IsNullOrEmpty(comment))
+            if (idComment == Guid.Empty)
             {
-                return new ReturnDto("Não é possível enviar um comentario vazio", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("Id do comentario Inválido", (int)StatusCodeEnum.Return.BadRequest);
             }
 
-            if (comment.Length > 255)
+            var result = await _commentRepository.GetByGuid(idComment);
+
+            if (result == null)
             {
-                return new ReturnDto("O comentarío não pode conter mais que 255 caracteres", (int)StatusCodeEnum.Return.BadRequest);
+                return new ReturnDto("Id do comentario não encontrado!", (int)StatusCodeEnum.Return.NotFound);
             }
 
-            await _commentRepository.Insert(new CommentEntity(comment, int.MinValue, DateTime.Now));
+            await _commentRepository.UpdateLike(result.Curtidas++, result);
 
-            return new ReturnDto("Comentario enviado com sucesso!", (int)StatusCodeEnum.Return.Sucess);
+            return new ReturnDto("Curtida enviada com sucesso!", (int)StatusCodeEnum.Return.Sucess);
+        }
+
+        public async Task<ReturnDto> RemoveLike(Guid idComment)
+        {
+            if (idComment == Guid.Empty)
+            {
+                return new ReturnDto("Id do comentario Inválido", (int)StatusCodeEnum.Return.BadRequest);
+            }
+
+            var result = await _commentRepository.GetByGuid(idComment);
+
+            if (result == null)
+            {
+                return new ReturnDto("Id do comentario não encontrado!", (int)StatusCodeEnum.Return.NotFound);
+            }
+
+            await _commentRepository.UpdateLike(result.Curtidas--, result);
+
+            return new ReturnDto("Curtida Removida!", (int)StatusCodeEnum.Return.Sucess);
         }
     }
 }

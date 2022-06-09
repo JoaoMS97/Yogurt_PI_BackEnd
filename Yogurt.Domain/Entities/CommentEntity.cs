@@ -14,13 +14,13 @@ namespace Yogurt.Domain.Entities
 
         public string? Legenda { get; set; }
 
-        public long? Curtidas { get; set; }
+        public int Curtidas { get; set; }
 
         public DateTime Data_Criacao { get; set; }
 
         public CommentEntity() {}
 
-        public CommentEntity(string? legenda, long curtidas, DateTime data_Criacao)
+        public CommentEntity(string? legenda, int curtidas, DateTime data_Criacao)
         {
             Legenda = legenda;
             Curtidas = curtidas;

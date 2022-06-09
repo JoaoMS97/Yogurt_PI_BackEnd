@@ -9,6 +9,9 @@ namespace Yogurt.Infraestructure.Interfaces
 {
     public interface ICommentRepository : IRepositoryAsync<EntityBase>
     {
+        Task<CommentEntity?> GetByGuid(Guid id);
+
+        Task<int> UpdateLike(int like, CommentEntity entity);
 
     }
 }

@@ -9,6 +9,10 @@ namespace Yogurt.Infraestructure.Context
 
         public DbSet<UserEntity> Usuario { get; set; }
 
+        public DbSet<CommentEntity> Comentarios { get; set; }
+
+        public DbSet<ReplyCommentEntity> Resposta { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
