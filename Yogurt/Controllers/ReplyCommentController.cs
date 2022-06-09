@@ -16,8 +16,8 @@ namespace Yogurt.Controllers
             _replyCommentService = replycommentService;
         }
 
-        [HttpPost("SendComment")]
-        public async Task<IActionResult> PostComment([FromBody] InputReplyCommentDto inputReplyCommentDto)
+        [HttpPost("SendReplyComment")]
+        public async Task<IActionResult> PostReplyComment([FromBody] InputReplyCommentDto inputReplyCommentDto)
         {
             var returns = await _replyCommentService.InsertReplyComment(inputReplyCommentDto.Id_Comentarios, inputReplyCommentDto.Legenda);
 
