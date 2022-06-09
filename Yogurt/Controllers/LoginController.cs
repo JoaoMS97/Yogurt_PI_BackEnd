@@ -30,8 +30,8 @@ namespace Yogurt.Controllers
             return Ok(returns);
         }
 
-        [HttpGet("ChangePassword")]
-        public async Task<IActionResult> ChangePassword(string email)
+        [HttpGet("VerifyToken")]
+        public async Task<IActionResult> SendEmail(string email)
         {
             var returns = await _userService.SendToken(email);
 
@@ -48,8 +48,8 @@ namespace Yogurt.Controllers
             return Ok(returns);
         }
 
-        [HttpPatch("SendToken")]
-        public async Task<IActionResult> SendToken(string token, string newPassword)
+        [HttpPatch("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(string token, string newPassword)
         {
             var returns = await _userService.VerifyToken(token, newPassword);
 

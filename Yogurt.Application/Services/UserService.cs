@@ -64,6 +64,11 @@ namespace Yogurt.Application.Services
                     (int)StatusCodeEnum.Return.NotFound); 
             }
 
+            if(userName.Length < 3)
+            {
+                return new ReturnDto("O Username não pode conter menos de 3 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
+            }
+
             if(password.Length < 8)
             {
                 return new ReturnDto("A senha não pode conter menos de 8 caractéres.", (int)StatusCodeEnum.Return.BadRequest);
@@ -75,7 +80,7 @@ namespace Yogurt.Application.Services
                     (int)StatusCodeEnum.Return.NotFound);
             }
 
-            await _usuarioRepository.Insert(new UserEntity(email, Utils.Utils.RetornarHash(password), userName, telefone));
+            await _usuarioRepository.Insert(new UserEntity(email, Utils.Utils.RetornarHash(password), $"@{userName}", telefone));
 
             return new ReturnDto("Sucesso", (int)StatusCodeEnum.Return.Sucess);
         }
