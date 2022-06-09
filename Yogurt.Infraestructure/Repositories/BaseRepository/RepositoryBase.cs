@@ -24,7 +24,7 @@ namespace Yogurt.Infraestructure.Repositories.BaseRepository
 
         public async Task<T> GetById(Guid id)
         {
-            return (await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id))!;
+            return (await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id));
         }
     }
 }

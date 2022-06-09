@@ -34,7 +34,7 @@ namespace Yogurt.Infraestructure.Repositories
 
                 if (entity != null)
                 {
-                    entity.Password = token;
+                    entity.Token = token;
                     YogurtContext.SaveChanges();
                 }
             }
