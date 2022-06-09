@@ -7,7 +7,7 @@ namespace Yogurt.Infraestructure.Context
     {
         public YogurtContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<PublicacaoEntity> PublicacaoEntity { get; set; }
+        public DbSet<PublicacaoEntity> Publicacao { get; set; }
         public DbSet<UserEntity> Usuario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

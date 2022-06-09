@@ -27,8 +27,8 @@ public class PublicacaoController : ControllerBase
     [HttpPost("CompartilharPublicacaoExistente")]
     public async Task<IActionResult> PostSharePublication(Guid id, [FromBody] InputPublicacaoDto inputPublicacaoDto)
     {
-        await _publicacaoService.SharePublication(id, inputPublicacaoDto.UsuarioId);
-        return Ok();
+        var a = await _publicacaoService.SharePublication(id, inputPublicacaoDto.UsuarioId);
+        return Ok(a.Objeto);
     }
     
     [HttpPost("IncrementarCurtidas")]
@@ -48,36 +48,36 @@ public class PublicacaoController : ControllerBase
     [HttpGet("BuscarPublicacaoById")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        await _publicacaoService.GetById(id);
+        var a = await _publicacaoService.GetById(id);
         
-        return Ok();
+        return Ok(a.Objeto);
     }
     
     [HttpGet("BuscarListaPublicacao")]
     public async Task<IActionResult> GetAllPublicacoes()
     {
-        await _publicacaoService.GetAll();
+        var a = await _publicacaoService.GetAll();
         
-        return Ok();
+        return Ok(a.ListaDeObjetos);
     }
     
     [HttpGet("BuscarPublicacaoPorLegenda")]
-    public async Task<IActionResult> GetPublicacaoPorLegenda([FromBody] InputPublicacaoDto inputPublicacaoDto)
+    public async Task<IActionResult> GetPublicacaoPorLegenda([FromBody]string legenda)
     {
-        if (string.IsNullOrEmpty(inputPublicacaoDto.Legenda))
+        if (string.IsNullOrEmpty(legenda))
             return NotFound();
         
-        await _publicacaoService.GetByLegenda(inputPublicacaoDto.Legenda);
+        var a = await _publicacaoService.GetByLegenda(legenda);
         
-        return Ok();
+        return Ok(a.Objeto);
     }
     
     [HttpPatch("AtualizarPublicacao")]
     public async Task<IActionResult> Patch(Guid id, [FromBody] InputPublicacaoDto inputPublicacaoDto)
     {
-        await _publicacaoService.Update(id, inputPublicacaoDto.Legenda ?? string.Empty);
+        var a = await _publicacaoService.Update(id, inputPublicacaoDto.Legenda ?? string.Empty);
         
-        return Ok();
+        return Ok(a.Objeto);
     }
     
     [HttpDelete("DeletarPublicacao")]
