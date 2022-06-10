@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Yogurt.Domain.Entities;
+using Yogurt.Domain.Entities.Base;
 using Yogurt.Infraestructure.Context;
-using Yogurt.Infraestructure.Interfaces;
+using Yogurt.Infraestructure.Interfaces.BaseInterface;
 
 namespace Yogurt.Infraestructure.Repositories.BaseRepository
 {
@@ -25,6 +25,12 @@ namespace Yogurt.Infraestructure.Repositories.BaseRepository
         public async Task<T?> GetById(Guid id)
         {
             return await _yogurtContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task RemoveByEntity(T entity)
+        {
+            _yogurtContext.Remove(entity);
+            await _yogurtContext.SaveChangesAsync();
         }
     }
 }

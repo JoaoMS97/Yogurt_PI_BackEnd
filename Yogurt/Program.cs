@@ -1,9 +1,21 @@
 using Yogurt.Application.Interfaces;
-using Yogurt.Application.Services;
 using Yogurt.Infraestructure.Context;
-using Yogurt.Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Yogurt.Infraestructure.Repositories;
+using Yogurt.Application.Interfaces.Comment;
+using Yogurt.Application.Interfaces.Publication;
+using Yogurt.Application.Interfaces.ReplyComment;
+using Yogurt.Application.Services.User;
+using Yogurt.Application.Services.Comment;
+using Yogurt.Application.Services.Publication;
+using Yogurt.Application.Services.ReplyComment;
+using Yogurt.Infraestructure.Interfaces.Comment;
+using Yogurt.Infraestructure.Interfaces.Publication;
+using Yogurt.Infraestructure.Interfaces.ReplyComment;
+using Yogurt.Infraestructure.Interfaces.User;
+using Yogurt.Infraestructure.Repositories.Comment;
+using Yogurt.Infraestructure.Repositories.Publication;
+using Yogurt.Infraestructure.Repositories.ReplyComment;
+using Yogurt.Infraestructure.Repositories.User;
 
 var builder = WebApplication.CreateBuilder(args);
 

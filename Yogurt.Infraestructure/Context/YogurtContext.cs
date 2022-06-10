@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Yogurt.Domain.Entities;
+using Yogurt.Domain.Entities.Comment;
+using Yogurt.Domain.Entities.Publication;
+using Yogurt.Domain.Entities.ReplyComment;
+using Yogurt.Domain.Entities.User;
 
 namespace Yogurt.Infraestructure.Context
 {

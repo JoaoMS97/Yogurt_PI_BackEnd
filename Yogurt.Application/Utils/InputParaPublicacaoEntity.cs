@@ -1,4 +1,4 @@
-using Yogurt.Domain.Entities;
+using Yogurt.Domain.Entities.Publication;
 
 namespace Yogurt.Application.Utils;
 
