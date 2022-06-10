@@ -24,7 +24,7 @@ public sealed class PublicacaoRepository : RepositoryBase<PublicacaoEntity>, IPu
         if (entity == null) return false;
 
         entity.Legenda = legenda;
-        entity.Data_Criacao = DateTime.Now;
+        entity.DataCriacao = DateTime.Now;
         var save = await YogurtContext.SaveChangesAsync();
 
         return save != 0;

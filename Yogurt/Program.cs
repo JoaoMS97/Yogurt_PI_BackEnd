@@ -16,6 +16,9 @@ using Yogurt.Infraestructure.Repositories.Comment;
 using Yogurt.Infraestructure.Repositories.Publication;
 using Yogurt.Infraestructure.Repositories.ReplyComment;
 using Yogurt.Infraestructure.Repositories.User;
+using Yogurt.Application.Services;
+using Yogurt.Infraestructure.Interfaces;
+using Yogurt.Infraestructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();

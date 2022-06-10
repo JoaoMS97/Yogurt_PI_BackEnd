@@ -4,25 +4,25 @@ namespace Yogurt.Domain.Entities.ReplyComment
 {
     public class ReplyCommentEntity : EntityBase
     {
-        public Guid Id_Comentarios { get; set; }
+        public Guid IdComentarios { get; set; }
 
         public string? Legenda { get; set; }
 
-        public DateTime Data_Criacao { get; set; }
+        public DateTime DataCriacao { get; set; }
 
         public ReplyCommentEntity() { }
 
         public ReplyCommentEntity(Guid id_Comentarios, string? legenda, DateTime data_Criacao)
         {
-            Id_Comentarios = id_Comentarios;
+            IdComentarios = id_Comentarios;
             Legenda = legenda;
-            Data_Criacao = data_Criacao;
+            DataCriacao = data_Criacao;
         }
 
         public ReplyCommentEntity(string? legenda, DateTime data_Criacao)
         {
             Legenda = legenda;
-            Data_Criacao = data_Criacao;
+            DataCriacao = data_Criacao;
         }
     }
 }

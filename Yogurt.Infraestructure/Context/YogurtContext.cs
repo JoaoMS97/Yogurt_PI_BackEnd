@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Yogurt.Domain.Entities;
 using Yogurt.Domain.Entities.Comment;
 using Yogurt.Domain.Entities.Publication;
 using Yogurt.Domain.Entities.ReplyComment;
@@ -14,6 +15,7 @@ namespace Yogurt.Infraestructure.Context
         public DbSet<UserEntity> Usuario { get; set; }
         public DbSet<CommentEntity> Comentarios { get; set; }
         public DbSet<ReplyCommentEntity> Resposta { get; set; }
+        public DbSet<FileEntity> Arquivos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -9,15 +9,15 @@ namespace Yogurt.Domain.Entities.Comment
 {
     public class CommentEntity : EntityBase
     {
-        public Guid Id_Publicacao { get; set; }
+        public Guid IdPublicacao { get; set; }
 
-        public Guid Id_Compartilhamento { get; set; }
+        public Guid IdCompartilhamento { get; set; }
 
         public string? Legenda { get; set; }
 
         public int Curtidas { get; set; }
 
-        public DateTime Data_Criacao { get; set; }
+        public DateTime DataCriacao { get; set; }
 
         public CommentEntity() { }
 
@@ -25,7 +25,7 @@ namespace Yogurt.Domain.Entities.Comment
         {
             Legenda = legenda;
             Curtidas = curtidas;
-            Data_Criacao = data_Criacao;
+            DataCriacao = data_Criacao;
         }
     }
 }

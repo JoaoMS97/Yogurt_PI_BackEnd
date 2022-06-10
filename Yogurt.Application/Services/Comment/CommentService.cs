@@ -37,7 +37,7 @@ namespace Yogurt.Application.Services.Comment
                 return new ReturnDto("O comentarío não pode conter mais que 255 caracteres", StatusCodeEnum.Return.BadRequest);
             }
 
-            await _commentRepository.Insert(new CommentEntity(comment, int.MinValue, DateTime.Now));
+            await _commentRepository.Insert(new CommentEntity(comment, 0, DateTime.Now));
 
             return new ReturnDto("Comentario enviado com sucesso!", StatusCodeEnum.Return.Sucess);
         }

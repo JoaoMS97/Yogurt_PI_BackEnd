@@ -9,10 +9,10 @@ public static class InputParaPublicacaoEntity
         return new PublicacaoEntity
         {
             Legenda = legenda,
-            Id_Perfil = usuarioId,
-            Id_Comunidade = comunidadeId,
+            IdPerfil = usuarioId,
+            IdComunidade = comunidadeId,
             Curtidas = 0,
-            Data_Criacao = DateTime.Now
+            DataCriacao = DateTime.Now
         };
     }
 }
