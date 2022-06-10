@@ -19,7 +19,7 @@ namespace Yogurt.Infraestructure.Migrations
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.CommentEntity", b =>
+            modelBuilder.Entity("Yogurt.Domain.Entities.Comment.CommentEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace Yogurt.Infraestructure.Migrations
                     b.ToTable("Comentarios");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.PublicacaoEntity", b =>
+            modelBuilder.Entity("Yogurt.Domain.Entities.Publication.PublicacaoEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace Yogurt.Infraestructure.Migrations
                     b.ToTable("Publicacao");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.ReplyCommentEntity", b =>
+            modelBuilder.Entity("Yogurt.Domain.Entities.ReplyComment.ReplyCommentEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace Yogurt.Infraestructure.Migrations
                     b.ToTable("Resposta");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.UserEntity", b =>
+            modelBuilder.Entity("Yogurt.Domain.Entities.User.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using Yogurt.Domain.Entities;
+using Yogurt.Domain.Entities.User;
 
 namespace Yogurt.Application.Utils
 {
