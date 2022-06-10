@@ -50,10 +50,11 @@ namespace Yogurt.Application.Services
             }
 
             string token = Utils.Utils.GenerateToken(email);
-
+            string message = SendEmaill.SendEmail(result, token);
             _usuarioRepository.UpdateToken(token, result);
 
-            return new ReturnDto(SendEmaill.SendEmail(result, token), (int)StatusCodeEnum.Return.Sucess);
+
+            return new ReturnDto(message , message.Contains("Sucesso") ? (int)StatusCodeEnum.Return.Sucess : (int)StatusCodeEnum.Return.NotFound);
         }
 
         public async Task<ReturnDto> Register(string email, string password, string userName, string telefone)

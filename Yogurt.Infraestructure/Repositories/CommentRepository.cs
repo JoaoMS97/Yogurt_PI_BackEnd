@@ -11,7 +11,7 @@ using Yogurt.Infraestructure.Repositories.BaseRepository;
 
 namespace Yogurt.Infraestructure.Repositories
 {
-    public class CommentRepository : RepositoryBase<EntityBase>, ICommentRepository
+    public class CommentRepository : RepositoryBase<CommentEntity>, ICommentRepository
     {
         public CommentRepository(YogurtContext context) : base(context)
         {

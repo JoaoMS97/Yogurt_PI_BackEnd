@@ -29,7 +29,7 @@ namespace Yogurt.Application.Utils
             }
             catch (Exception ex)
             {
-                return "Deu pau no envio de E-mail";
+                return $"Deu pau no envio de E-mail. StackTrace: {ex}";
             }
 
             return "Email Enviado com Sucesso!";

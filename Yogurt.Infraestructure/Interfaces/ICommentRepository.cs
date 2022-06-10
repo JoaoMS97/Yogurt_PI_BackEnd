@@ -7,7 +7,7 @@ using Yogurt.Domain.Entities;
 
 namespace Yogurt.Infraestructure.Interfaces
 {
-    public interface ICommentRepository : IRepositoryAsync<EntityBase>
+    public interface ICommentRepository : IRepositoryAsync<CommentEntity>
     {
         Task<CommentEntity?> GetByGuid(Guid id);
 
