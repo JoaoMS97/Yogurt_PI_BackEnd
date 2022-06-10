@@ -110,8 +110,8 @@ public class PublicacaoService : IPublicacaoService
             return new ReturnDto("Essa publicação não existe mais", StatusCodeEnum.Return.NotFound);
 
         publication.Curtidas = 0;
-        publication.Data_Criacao = DateTime.Now;
-        publication.Id_Perfil = usuarioId;
+        publication.DataCriacao = DateTime.Now;
+        publication.IdPerfil = usuarioId;
 
         await _publicacaoRepository.Insert(publication);
 
