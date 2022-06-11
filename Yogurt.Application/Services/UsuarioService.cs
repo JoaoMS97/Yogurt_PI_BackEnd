@@ -89,48 +89,5 @@ namespace Yogurt.Application.Services
 
             return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso, result);
         }
-
-        public async Task<RetornoDto> AlterarNomeUsuario(string nomeUsuario)
-        {
-            if(string.IsNullOrEmpty(nomeUsuario))
-            {
-                return new RetornoDto("Você precisa ter um nome!", (int)StatusCodeEnum.Retorno.BadRequest);
-            }
-
-            if(nomeUsuario.Length < 3)
-            {
-                return new RetornoDto("O nome não pode conter menos de 3 caractéres!", (int)StatusCodeEnum.Retorno.BadRequest);
-            }
-
-            if(nomeUsuario.Length > 50)
-            {
-                return new RetornoDto("O nome não pode conter mais de 50 caractéres", (int)StatusCodeEnum.Retorno.BadRequest);
-            }
-
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
-        }
-
-        public async Task<RetornoDto> AlterarBiografia(string biografia)
-        {
-            if(biografia.Length > 4000)
-            {
-                return new RetornoDto("Quantidade de caractéres superior ao permitido", (int)StatusCodeEnum.Retorno.BadRequest);
-            }
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
-        }
-
-        public async Task<RetornoDto> AlterarFotoPerfil(string fotoPerfil)
-        {
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
-        }
-
-        public async Task<RetornoDto> AlterarCidade(string cidade)
-        {
-            if (string.IsNullOrEmpty(cidade))
-            {
-                return new RetornoDto("Você precisa informar uma cidade!", (int)StatusCodeEnum.Retorno.BadRequest);
-            }
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
-        }
     }
 }

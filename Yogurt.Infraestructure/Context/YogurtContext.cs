@@ -9,6 +9,8 @@ namespace Yogurt.Infraestructure.Context
 
         public DbSet<UsuarioEntity> UsuarioEntity { get; set; }
 
+        public DbSet<ProfileUserEntity> Perfil { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
