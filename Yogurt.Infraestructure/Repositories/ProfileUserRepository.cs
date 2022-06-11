@@ -29,7 +29,7 @@ namespace Yogurt.Infraestructure.Repositories
 
         //public async Task<ProfileUserEntity?> GetByCity(string city)
         //{
-        //    return YogurtContext.Set<ProfileUserEntity>().FirstOrDefault(x => x.Cidades == city);
+        //    return YogurtContext.Set<ProfileUserEntity>().Join;
         //}
 
         public async Task<ProfileUserEntity?> GetByProfilePhoto(byte[]? profilePhoto)
@@ -81,12 +81,12 @@ namespace Yogurt.Infraestructure.Repositories
 
         //        if (entity != null)
         //        {
-        //            entity.Cidades = city;
-        //            YogurtContext.SaveChanges();
+        //           entity.IdCidade = city;
+        //           YogurtContext.SaveChanges();
         //        }
         //    }
         //    catch (Exception ex)
-        //    {
+        //   {
         //        throw new Exception($"Erro ao salvar o município.");
         //    }
         //}

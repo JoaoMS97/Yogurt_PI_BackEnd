@@ -43,7 +43,7 @@ namespace Yogurt.Application.Services
 
             //if (dataNascimento == )
             //{
-            //    return new RetornoDto("Preencha a dataNascimento.", (int)StatusCodeEnum.Retorno.BadRequest);
+            //    return new RetornoDto("Preencha a dataNascimento.", StatusCodeEnum.Retorno.BadRequest);
             //}
 
             if (dataNascimento > DateTime.Today)
@@ -58,7 +58,7 @@ namespace Yogurt.Application.Services
 
             //if(genero == )
             //{
-            //    return new RetornoDto("Preencha o gênero.", (int)StatusCodeEnum.Retorno.NotFound);
+            //    return new RetornoDto("Preencha o gênero.", StatusCodeEnum.Retorno.NotFound);
             //}
 
             if(genero != 'F' || genero != 'M')

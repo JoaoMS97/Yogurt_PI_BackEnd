@@ -18,8 +18,11 @@ namespace Yogurt.Infraestructure.Context
         public DbSet<ReplyCommentEntity> Resposta { get; set; }
         public DbSet<FileEntity> Arquivos { get; set; }
         public DbSet<CommunityEntity> Comunidade { get; set; }
-
         public DbSet<ProfileUserEntity> Perfil { get; set; }
+        public DbSet<CityEntity> Cidade { get; set; }
+        public DbSet<StatesEntity> Estado { get; set; }
+        public DbSet<FriendEntity> Amizade { get; set; }
+        public DbSet<ConnectEntity> Conectar { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

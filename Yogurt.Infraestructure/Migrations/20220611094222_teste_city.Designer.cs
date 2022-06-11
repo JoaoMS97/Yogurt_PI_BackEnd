@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yogurt.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using Yogurt.Infraestructure.Context;
 namespace Yogurt.Infraestructure.Migrations
 {
     [DbContext(typeof(YogurtContext))]
-    partial class YogurtContextModelSnapshot : ModelSnapshot
+    [Migration("20220611094222_teste_city")]
+    partial class teste_city
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

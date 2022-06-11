@@ -16,6 +16,8 @@ namespace Yogurt.Domain.Entities.User
 
         public string? Token { get; set; }
 
+        public virtual ProfileUserEntity Perfil { get; set; }
+
         public UserEntity() { }
 
         public UserEntity(string? token)
