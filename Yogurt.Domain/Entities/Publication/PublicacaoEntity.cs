@@ -5,7 +5,7 @@ namespace Yogurt.Domain.Entities.Publication;
 
 public class PublicacaoEntity : EntityBase
 {
-    [ForeignKey("Id_Perfil")]
+    [ForeignKey("Id")]
     public Guid IdPerfil { get; set; }
 
     public Guid? IdComunidade { get; set; }

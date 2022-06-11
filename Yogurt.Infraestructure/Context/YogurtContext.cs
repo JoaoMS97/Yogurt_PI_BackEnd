@@ -17,6 +17,8 @@ namespace Yogurt.Infraestructure.Context
         public DbSet<ReplyCommentEntity> Resposta { get; set; }
         public DbSet<FileEntity> Arquivos { get; set; }
 
+        public DbSet<ProfileUserEntity> Perfil { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
