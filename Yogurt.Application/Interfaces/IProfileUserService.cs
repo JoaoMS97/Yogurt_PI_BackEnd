@@ -9,14 +9,14 @@ namespace Yogurt.Application.Interfaces
 {
     public interface IProfileUserService
     {
-        Task<RetornoDto> Register(string userName, string biography, DateTime dataNascimento, char genero, Guid idUsuario, byte[]? fotoPerfil);
+        Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, char genero, Guid idUsuario, byte[]? fotoPerfil);
 
-        Task<RetornoDto> AlterUserName(string userName, Guid idPerfil);
+        Task<ReturnDto> AlterUserName(string userName, Guid idPerfil);
 
-        Task<RetornoDto> AlterBiography(string biography, Guid idPerfil);
+        Task<ReturnDto> AlterBiography(string biography, Guid idPerfil);
 
-        Task<RetornoDto> AlterProfilePhoto(byte[]? photoProfile, Guid idPerfil);
+        Task<ReturnDto> AlterProfilePhoto(byte[]? photoProfile, Guid idPerfil);
 
-        Task<RetornoDto> AlterCity(string city, Guid idPerfil);
+        Task<ReturnDto> AlterCity(string city, Guid idPerfil);
     }
 }

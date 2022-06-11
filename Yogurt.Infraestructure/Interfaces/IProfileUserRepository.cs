@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Yogurt.Domain.Entities;
+﻿using Yogurt.Domain.Entities;
+using Yogurt.Infraestructure.Interfaces.BaseInterface;
 
 namespace Yogurt.Infraestructure.Interfaces
 {
-    public interface IProfileUserRepository : IRepositoryAsync<EntityBase>
+    public interface IProfileUserRepository : IRepositoryAsync<ProfileUserEntity>
     {
         Task<ProfileUserEntity?> GetById(Guid id);
 

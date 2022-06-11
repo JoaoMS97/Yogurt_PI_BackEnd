@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Yogurt.Domain.Entities;
 using Yogurt.Domain.Entities.Comment;
+using Yogurt.Domain.Entities.ComunidadeEntity;
 using Yogurt.Domain.Entities.Publication;
 using Yogurt.Domain.Entities.ReplyComment;
 using Yogurt.Domain.Entities.User;
@@ -16,6 +17,7 @@ namespace Yogurt.Infraestructure.Context
         public DbSet<CommentEntity> Comentarios { get; set; }
         public DbSet<ReplyCommentEntity> Resposta { get; set; }
         public DbSet<FileEntity> Arquivos { get; set; }
+        public DbSet<CommunityEntity> Comunidade { get; set; }
 
         public DbSet<ProfileUserEntity> Perfil { get; set; }
 

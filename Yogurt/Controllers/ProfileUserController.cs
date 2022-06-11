@@ -21,7 +21,7 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.Register(inputProfileUserDto.Nome, inputProfileUserDto.Biografia, inputProfileUserDto.DataNascimento, inputProfileUserDto.Genero, inputProfileUserDto.IdUsuario, inputProfileUserDto.FotoPerfil);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns);
             }
@@ -34,17 +34,17 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.AlterUserName(nameUser, idPerfil);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Mensagem);
+                return BadRequest(returns.Message);
             }
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Mensagem);
+                return NotFound(returns.Message);
             }
 
-            return Ok(returns.Mensagem);
+            return Ok(returns.Message);
         }
 
         [HttpPatch("AlterBiography")]
@@ -52,17 +52,17 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.AlterBiography(biography, idPerfil);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Mensagem);
+                return BadRequest(returns.Message);
             }
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Mensagem);
+                return NotFound(returns.Message);
             }
 
-            return Ok(returns.Mensagem);
+            return Ok(returns.Message);
         }
 
         [HttpPatch("AlterPhotoProfile")]
@@ -70,17 +70,17 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.AlterProfilePhoto(photoProfile, idPerfil);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Mensagem);
+                return BadRequest(returns.Message);
             }
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Mensagem);
+                return NotFound(returns.Message);
             }
 
-            return Ok(returns.Mensagem);
+            return Ok(returns.Message);
         }
 
         [HttpPatch("AlterCity")]
@@ -88,17 +88,17 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.AlterCity(city, idPerfil);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.BadRequest))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
             {
-                return BadRequest(returns.Mensagem);
+                return BadRequest(returns.Message);
             }
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Retorno.NotFound))
+            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.NotFound))
             {
-                return NotFound(returns.Mensagem);
+                return NotFound(returns.Message);
             }
 
-            return Ok(returns.Mensagem);
+            return Ok(returns.Message);
         }
     }
 }

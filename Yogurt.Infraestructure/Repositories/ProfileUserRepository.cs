@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Yogurt.Domain.Entities;
+using Yogurt.Domain.Entities.Base;
 using Yogurt.Infraestructure.Context;
 using Yogurt.Infraestructure.Interfaces;
 using Yogurt.Infraestructure.Repositories.BaseRepository;
 
 namespace Yogurt.Infraestructure.Repositories
 {
-    public class ProfileUserRepository : RepositoryBase<EntityBase>, IProfileUserRepository 
+    public class ProfileUserRepository : RepositoryBase<ProfileUserEntity>, IProfileUserRepository 
     {
         public ProfileUserRepository(YogurtContext context) : base(context)
         {          

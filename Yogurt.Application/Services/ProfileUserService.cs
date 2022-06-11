@@ -19,26 +19,26 @@ namespace Yogurt.Application.Services
         {
             _profileUserRepository = repository;
         }
-        public async Task<RetornoDto> Register(string userName, string biography, DateTime dataNascimento, char genero, Guid idUsuario, byte[]? fotoPerfil)
+        public async Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, char genero, Guid idUsuario, byte[]? fotoPerfil)
         {
             if (string.IsNullOrEmpty(userName))
             {
-                return new RetornoDto("Preencha o UserName.", (int)StatusCodeEnum.Retorno.NotFound);
+                return new ReturnDto("Preencha o UserName.", StatusCodeEnum.Return.NotFound);
             }
             
             if (userName.Length < 3)
             {
-                return new RetornoDto("O Username não pode conter menos de 3 caractéres.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("O Username não pode conter menos de 3 caractéres.", StatusCodeEnum.Return.BadRequest);
             }
 
             if (userName.Length > 50)
             {
-                return new RetornoDto("O nome não pode conter mais de 50 caractéres", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("O nome não pode conter mais de 50 caractéres", StatusCodeEnum.Return.BadRequest);
             }
 
             if (biography.Length > 4000)
             {
-                return new RetornoDto("Quantidade de caractéres superior ao permitido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Quantidade de caractéres superior ao permitido", StatusCodeEnum.Return.BadRequest);
             }
 
             //if (dataNascimento == )
@@ -48,12 +48,12 @@ namespace Yogurt.Application.Services
 
             if (dataNascimento > DateTime.Today)
             {
-                return new RetornoDto("A Data de Nascimento não pode ser superior a data atual.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("A Data de Nascimento não pode ser superior a data atual.", StatusCodeEnum.Return.BadRequest);
             }
 
             if(dataNascimento < new DateTime(1899/12/31))
             {
-                return new RetornoDto("A Data de Nascimento não pode ser inferior ao ano de 1900.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("A Data de Nascimento não pode ser inferior ao ano de 1900.", StatusCodeEnum.Return.BadRequest);
             }
 
             //if(genero == )
@@ -63,114 +63,114 @@ namespace Yogurt.Application.Services
 
             if(genero != 'F' || genero != 'M')
             {
-                return new RetornoDto("Inicial de gênero incorreta.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Inicial de gênero incorreta.", StatusCodeEnum.Return.BadRequest);
             }
 
             await _profileUserRepository.Insert(new ProfileUserEntity(idUsuario, userName, dataNascimento, fotoPerfil, biography, genero));
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
 
         }
 
-        public async Task<RetornoDto> AlterUserName(string userName, Guid idPerfil)
+        public async Task<ReturnDto> AlterUserName(string userName, Guid idPerfil)
         {
             if (string.IsNullOrEmpty(userName))
             {
-                return new RetornoDto("Você precisa ter um nome!", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Você precisa ter um nome!", StatusCodeEnum.Return.BadRequest);
             }
 
             if (userName.Length < 3)
             {
-                return new RetornoDto("O nome não pode conter menos de 3 caractéres!", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("O nome não pode conter menos de 3 caractéres!", StatusCodeEnum.Return.BadRequest);
             }
 
             if (userName.Length > 50)
             {
-                return new RetornoDto("O nome não pode conter mais de 50 caractéres", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("O nome não pode conter mais de 50 caractéres", StatusCodeEnum.Return.BadRequest);
             }
 
             if(idPerfil == Guid.Empty)
             {
-                return new RetornoDto("Id do perfil Inválido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Id do perfil Inválido", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _profileUserRepository.GetById(idPerfil);
 
             if(result == null)
             {
-                return new RetornoDto("Registro não encontrado.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Registro não encontrado.", StatusCodeEnum.Return.BadRequest);
             }
 
             _profileUserRepository.UpdateUserName(userName, result);
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
 
-        public async Task<RetornoDto> AlterBiography(string? biography, Guid idPerfil)
+        public async Task<ReturnDto> AlterBiography(string? biography, Guid idPerfil)
         {
             if (biography.Length > 4000)
             {
-                return new RetornoDto("Quantidade de caractéres superior ao permitido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Quantidade de caractéres superior ao permitido", StatusCodeEnum.Return.BadRequest);
             }
 
             if (idPerfil == Guid.Empty)
             {
-                return new RetornoDto("Id do perfil Inválido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Id do perfil Inválido", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _profileUserRepository.GetById(idPerfil);
 
             if (result == null)
             {
-                return new RetornoDto("Registro não encontrado.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Registro não encontrado.", StatusCodeEnum.Return.BadRequest);
             }
 
             _profileUserRepository.UpdateBiography(biography, result);
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
 
-        public async Task<RetornoDto> AlterProfilePhoto(byte[]? profilePhoto, Guid idPerfil)
+        public async Task<ReturnDto> AlterProfilePhoto(byte[]? profilePhoto, Guid idPerfil)
         {
             if (idPerfil == Guid.Empty)
             {
-                return new RetornoDto("Id do perfil Inválido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Id do perfil Inválido", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _profileUserRepository.GetById(idPerfil);
 
             if (result == null)
             {
-                return new RetornoDto("Registro não encontrado.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Registro não encontrado.", StatusCodeEnum.Return.BadRequest);
             }
 
             _profileUserRepository.UpdateProfilePhoto(profilePhoto, result);
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
 
-        public async Task<RetornoDto> AlterCity(string city, Guid idPerfil)
+        public async Task<ReturnDto> AlterCity(string city, Guid idPerfil)
         {
             if (string.IsNullOrEmpty(city))
             {
-                return new RetornoDto("Você precisa informar uma cidade!", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Você precisa informar uma cidade!", StatusCodeEnum.Return.BadRequest);
             }
 
             if (idPerfil == Guid.Empty)
             {
-                return new RetornoDto("Id do perfil Inválido", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Id do perfil Inválido", StatusCodeEnum.Return.BadRequest);
             }
 
             var result = await _profileUserRepository.GetById(idPerfil);
 
             if (result == null)
             {
-                return new RetornoDto("Registro não encontrado.", (int)StatusCodeEnum.Retorno.BadRequest);
+                return new ReturnDto("Registro não encontrado.", StatusCodeEnum.Return.BadRequest);
             }
 
             //_profileUserRepository.UpdateCity(city, result);
 
-            return new RetornoDto("Sucesso", (int)StatusCodeEnum.Retorno.Sucesso);
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
     }
 }

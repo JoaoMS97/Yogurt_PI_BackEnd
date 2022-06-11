@@ -19,6 +19,7 @@ using Yogurt.Infraestructure.Repositories.User;
 using Yogurt.Application.Services;
 using Yogurt.Infraestructure.Interfaces;
 using Yogurt.Infraestructure.Repositories;
+using Yogurt.Application.Services.Community;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,8 @@ builder.Services.AddScoped<IReplyCommentService, ReplyCommentService>();
 builder.Services.AddScoped<IReplyCommentRepository, ReplyCommentRepository>();
 builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
 builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
+builder.Services.AddScoped<ICommunityService, CommunityService>();
+builder.Services.AddScoped<ICommunityRepository, CommunityRepository>();
 
 builder.Services.AddDbContext<YogurtContext>(options =>
 {
