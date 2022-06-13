@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Yogurt.Application\Yogurt.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\City\" />
+  </ItemGroup>
+
 </Project>

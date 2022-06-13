@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yogurt.Domain.Entities.Base;
+using Yogurt.Domain.Entities.Publication;
 
 namespace Yogurt.Domain.Entities.ComunidadeEntity
 {
@@ -20,6 +21,8 @@ namespace Yogurt.Domain.Entities.ComunidadeEntity
         public byte[] FotoComunidade { get; set; }
 
         public DateTime DataCriacao { get; set; }
+
+        public virtual ICollection<PublicacaoEntity> Publicacoes { get; set; }
 
         public CommunityEntity(Guid idCriador, Guid idCategoriaComunidade, string? nome, string? legenda, byte[] fotoComunidade, DateTime dataCriacao)
         {

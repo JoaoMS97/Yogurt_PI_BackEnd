@@ -21,7 +21,7 @@ namespace Yogurt.Controllers
         {
             var returns = await _fileService.InsertFile(inputFileDto.Id_Publicacao, inputFileDto.Conteudo, inputFileDto.MimeType);
 
-            if (returns.StatusCode.Equals((int)StatusCodeEnum.Return.BadRequest))
+            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns);
             }

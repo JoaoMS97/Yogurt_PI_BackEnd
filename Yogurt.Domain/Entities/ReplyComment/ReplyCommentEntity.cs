@@ -4,7 +4,7 @@ namespace Yogurt.Domain.Entities.ReplyComment
 {
     public class ReplyCommentEntity : EntityBase
     {
-        public Guid IdComentarios { get; set; }
+        public Guid IdComentario { get; set; }
 
         public string? Legenda { get; set; }
 
@@ -14,7 +14,7 @@ namespace Yogurt.Domain.Entities.ReplyComment
 
         public ReplyCommentEntity(Guid id_Comentarios, string? legenda, DateTime data_Criacao)
         {
-            IdComentarios = id_Comentarios;
+            IdComentario = id_Comentarios;
             Legenda = legenda;
             DataCriacao = data_Criacao;
         }

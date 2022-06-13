@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yogurt.Infraestructure.Context;
 
@@ -10,9 +11,10 @@ using Yogurt.Infraestructure.Context;
 namespace Yogurt.Infraestructure.Migrations
 {
     [DbContext(typeof(YogurtContext))]
-    partial class YogurtContextModelSnapshot : ModelSnapshot
+    [Migration("20220611093741_city_and_states")]
+    partial class city_and_states
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,30 +97,6 @@ namespace Yogurt.Infraestructure.Migrations
                     b.ToTable("Comunidade");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.ConnectEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("IdAmizade")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("IdPerfil")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdAmizade");
-
-                    b.HasIndex("IdPerfil");
-
-                    b.ToTable("Conectar");
-                });
-
             modelBuilder.Entity("Yogurt.Domain.Entities.FileEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -141,25 +119,7 @@ namespace Yogurt.Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdPublicacao");
-
                     b.ToTable("Arquivos");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.FriendEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("IdPerfil")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdPerfil");
-
-                    b.ToTable("Amizade");
                 });
 
             modelBuilder.Entity("Yogurt.Domain.Entities.ProfileUserEntity", b =>
@@ -226,10 +186,6 @@ namespace Yogurt.Infraestructure.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdComunidade");
-
-                    b.HasIndex("IdPerfil");
 
                     b.ToTable("Publicacao");
                 });
@@ -310,47 +266,6 @@ namespace Yogurt.Infraestructure.Migrations
                     b.Navigation("Estado");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.ConnectEntity", b =>
-                {
-                    b.HasOne("Yogurt.Domain.Entities.FriendEntity", "Amizade")
-                        .WithMany("Connects")
-                        .HasForeignKey("IdAmizade")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Yogurt.Domain.Entities.ProfileUserEntity", "Perfil")
-                        .WithMany("Connects")
-                        .HasForeignKey("IdPerfil")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Amizade");
-
-                    b.Navigation("Perfil");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.FileEntity", b =>
-                {
-                    b.HasOne("Yogurt.Domain.Entities.Publication.PublicacaoEntity", "publicacao")
-                        .WithMany("FileEntities")
-                        .HasForeignKey("IdPublicacao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("publicacao");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.FriendEntity", b =>
-                {
-                    b.HasOne("Yogurt.Domain.Entities.ProfileUserEntity", "Perfil")
-                        .WithMany("Amigos")
-                        .HasForeignKey("IdPerfil")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Perfil");
-                });
-
             modelBuilder.Entity("Yogurt.Domain.Entities.ProfileUserEntity", b =>
                 {
                     b.HasOne("Yogurt.Domain.Entities.CityEntity", "Cidade")
@@ -370,50 +285,9 @@ namespace Yogurt.Infraestructure.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Yogurt.Domain.Entities.Publication.PublicacaoEntity", b =>
-                {
-                    b.HasOne("Yogurt.Domain.Entities.ComunidadeEntity.CommunityEntity", "Comunidade")
-                        .WithMany("Publicacoes")
-                        .HasForeignKey("IdComunidade");
-
-                    b.HasOne("Yogurt.Domain.Entities.ProfileUserEntity", "Perfil")
-                        .WithMany("Publicacoes")
-                        .HasForeignKey("IdPerfil")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comunidade");
-
-                    b.Navigation("Perfil");
-                });
-
             modelBuilder.Entity("Yogurt.Domain.Entities.CityEntity", b =>
                 {
                     b.Navigation("Perfis");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.ComunidadeEntity.CommunityEntity", b =>
-                {
-                    b.Navigation("Publicacoes");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.FriendEntity", b =>
-                {
-                    b.Navigation("Connects");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.ProfileUserEntity", b =>
-                {
-                    b.Navigation("Amigos");
-
-                    b.Navigation("Connects");
-
-                    b.Navigation("Publicacoes");
-                });
-
-            modelBuilder.Entity("Yogurt.Domain.Entities.Publication.PublicacaoEntity", b =>
-                {
-                    b.Navigation("FileEntities");
                 });
 
             modelBuilder.Entity("Yogurt.Domain.Entities.StatesEntity", b =>

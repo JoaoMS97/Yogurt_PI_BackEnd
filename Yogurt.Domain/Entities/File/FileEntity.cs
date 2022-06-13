@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yogurt.Domain.Entities.Base;
+using Yogurt.Domain.Entities.Publication;
 
 namespace Yogurt.Domain.Entities
 {
@@ -17,7 +19,8 @@ namespace Yogurt.Domain.Entities
 
         public DateTime DataCriacao { get; set; }
 
-        public FileEntity() {}
+        [ForeignKey("IdPublicacao")]
+        public virtual PublicacaoEntity publicacao { get; set; }
 
         public FileEntity(Guid idPublicacao, byte[] conteudo, string mimeType, DateTime dataCriacao)
         {
