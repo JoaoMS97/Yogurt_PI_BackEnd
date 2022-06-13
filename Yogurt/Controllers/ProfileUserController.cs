@@ -88,7 +88,7 @@ namespace Yogurt.Controllers
         {
             var returns = await _profileUserService.AlterCity(city, idPerfil);
 
-            if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+           if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
                 return BadRequest(returns.Message);
             }

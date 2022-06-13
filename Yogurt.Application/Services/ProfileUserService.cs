@@ -41,11 +41,6 @@ namespace Yogurt.Application.Services
                 return new ReturnDto("Quantidade de caractéres superior ao permitido", StatusCodeEnum.Return.BadRequest);
             }
 
-            //if (dataNascimento == )
-            //{
-            //    return new RetornoDto("Preencha a dataNascimento.", StatusCodeEnum.Retorno.BadRequest);
-            //}
-
             if (dataNascimento > DateTime.Today)
             {
                 return new ReturnDto("A Data de Nascimento não pode ser superior a data atual.", StatusCodeEnum.Return.BadRequest);
@@ -55,11 +50,6 @@ namespace Yogurt.Application.Services
             {
                 return new ReturnDto("A Data de Nascimento não pode ser inferior ao ano de 1900.", StatusCodeEnum.Return.BadRequest);
             }
-
-            //if(genero == )
-            //{
-            //    return new RetornoDto("Preencha o gênero.", StatusCodeEnum.Retorno.NotFound);
-            //}
 
             if(genero != 'F' || genero != 'M')
             {

@@ -17,9 +17,19 @@ namespace Yogurt.Infraestructure.Repositories
 
         }
 
-        public async Task<FriendEntity> GetFriend(Guid idProfile) => YogurtContext.Amizade.FirstOrDefault(x => x.IdPerfil == idProfile);
+        //public Task<List<object?>> GetFriends(Guid idProfile)
+        //{
+        //    var query =          (  from C in YogurtContext.Conectar
+        //                         join A in YogurtContext.Amizade on C.IdAmizade equals A.Id
+        //                         where C.IdPerfil == idProfile ||
+        //                               A.IdPerfil == idProfile
+        //                         select new
+        //                         {
+        //                             C.
+        //                         }).ToList();
 
 
-
+        //    return query;
+        //}
     }
 }

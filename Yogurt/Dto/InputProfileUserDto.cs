@@ -2,8 +2,7 @@
 {
     public class InputProfileUserDto
     {
-        public virtual Guid IdUsuario { get; set;
-        }
+        public virtual Guid IdUsuario { get; set;}
         public string Nome { get; set; }
 
         public DateTime DataNascimento { get; set; }
