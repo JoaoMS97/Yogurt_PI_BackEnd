@@ -14,11 +14,11 @@ public class PublicacaoService : IPublicacaoService
         _publicacaoRepository = publicacaoRepository;
     }
 
-    public async Task<ReturnDto> Insert(string? legenda, Guid usuarioId, string? comunidadeId)
+    public async Task<ReturnDto> Insert(string? legenda, Guid usuarioId, Guid? comunidadeId)
     {
         var entity =
-            InputParaPublicacaoEntity.ConverterInputParaPublicacaoEntity(legenda ?? string.Empty, usuarioId, string.IsNullOrEmpty(comunidadeId) ?
-                Guid.Empty : Guid.Parse(comunidadeId));
+            InputParaPublicacaoEntity.ConverterInputParaPublicacaoEntity(legenda ?? string.Empty, usuarioId,
+                comunidadeId);
 
         await _publicacaoRepository.Insert(entity);
 
