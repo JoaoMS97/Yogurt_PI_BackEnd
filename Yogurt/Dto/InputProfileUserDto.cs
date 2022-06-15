@@ -2,10 +2,13 @@
 {
     public class InputProfileUserDto
     {
-        public virtual Guid IdUsuario { get; set;}
-        public string Nome { get; set; }
+        public Guid IdUsuario { get; set;}
 
-        public DateTime DataNascimento { get; set; }
+        public int IdCidade { get; set; }
+
+        public string? Nome { get; set; }
+
+        public DateTime? DataNascimento { get; set; }
 
         public byte[]? FotoPerfil { get; set; }
 

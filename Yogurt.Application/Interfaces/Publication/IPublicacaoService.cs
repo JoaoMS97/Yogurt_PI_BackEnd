@@ -4,7 +4,7 @@ namespace Yogurt.Application.Interfaces.Publication;
 
 public interface IPublicacaoService
 {
-    public Task<ReturnDto> Insert(string legenda, Guid usuarioId, Guid? comunidadeId);
+    public Task<ReturnDto> Insert(string legenda, Guid usuarioId, string? comunidadeId);
 
     public Task<ReturnDto> GetById(Guid id);
 

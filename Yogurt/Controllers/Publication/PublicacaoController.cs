@@ -18,8 +18,8 @@ public class PublicacaoController : ControllerBase
     [HttpPost("GerarPublicacao")]
     public async Task<IActionResult> Post([FromBody] InputPublicacaoDto inputPublicacaoDto)
     {
-        await _publicacaoService.Insert(inputPublicacaoDto.Legenda ?? string.Empty, inputPublicacaoDto.UsuarioId,
-            inputPublicacaoDto.ComunidadeId);
+        await _publicacaoService.Insert(inputPublicacaoDto.Legenda ?? string.Empty, inputPublicacaoDto.IdPerfil,
+            inputPublicacaoDto.IdComunidade);
 
         return Ok();
     }
@@ -27,7 +27,7 @@ public class PublicacaoController : ControllerBase
     [HttpPost("CompartilharPublicacaoExistente")]
     public async Task<IActionResult> PostSharePublication(Guid id, [FromBody] InputPublicacaoDto inputPublicacaoDto)
     {
-        var a = await _publicacaoService.SharePublication(id, inputPublicacaoDto.UsuarioId);
+        var a = await _publicacaoService.SharePublication(id, inputPublicacaoDto.IdPerfil);
         return Ok(a.Objeto);
     }
 

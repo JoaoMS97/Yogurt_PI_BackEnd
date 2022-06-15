@@ -13,15 +13,15 @@ namespace Yogurt.Domain.Entities
     public class ProfileUserEntity : EntityBase
     {
 
-        public string Nome { get; set; } //
+        public string Nome { get; set; } 
 
-        public DateTime DataNascimento { get; set; }//
+        public DateTime DataNascimento { get; set; }
 
         public byte[]? FotoPerfil { get; set; }
 
         public string? Biografia { get; set; }
 
-        public char Genero { get; set; } //
+        public char? Genero { get; set; } 
 
         public DateTime DataCriacao { get; set; }
 
@@ -42,9 +42,10 @@ namespace Yogurt.Domain.Entities
 
         public virtual ICollection<PublicacaoEntity> Publicacoes { get; set; }
 
-        public ProfileUserEntity(Guid idUsuario, string nome, DateTime dataNascimento, byte[]? fotoPerfil, string? biografia, char genero)
+        public ProfileUserEntity(Guid idUsuario, int idCidade, string nome, DateTime dataNascimento, byte[]? fotoPerfil, string? biografia, char? genero)
         {
             IdUsuario = idUsuario;
+            IdCidade = idCidade;
             Nome = nome;
             DataNascimento = dataNascimento;
             FotoPerfil = fotoPerfil;

@@ -19,7 +19,7 @@ namespace Yogurt.Application.Services
         {
             _profileUserRepository = repository;
         }
-        public async Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, char genero, Guid idUsuario, byte[]? fotoPerfil)
+        public async Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, char? genero, Guid idUsuario, int idCidade, byte[]? fotoPerfil)
         {
             if (string.IsNullOrEmpty(userName))
             {
@@ -51,12 +51,12 @@ namespace Yogurt.Application.Services
                 return new ReturnDto("A Data de Nascimento não pode ser inferior ao ano de 1900.", StatusCodeEnum.Return.BadRequest);
             }
 
-            if(genero != 'F' || genero != 'M')
-            {
-                return new ReturnDto("Inicial de gênero incorreta.", StatusCodeEnum.Return.BadRequest);
-            }
+            //if(genero != 'F' || genero != 'M')
+            //{
+            //    return new ReturnDto("Inicial de gênero incorreta.", StatusCodeEnum.Return.BadRequest);
+            //}
 
-            await _profileUserRepository.Insert(new ProfileUserEntity(idUsuario, userName, dataNascimento, fotoPerfil, biography, genero));
+            await _profileUserRepository.Insert(new ProfileUserEntity(idUsuario, idCidade, userName, dataNascimento, fotoPerfil, biography, genero));
 
             return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
 

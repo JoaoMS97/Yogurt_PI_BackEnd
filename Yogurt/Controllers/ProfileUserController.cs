@@ -19,7 +19,7 @@ namespace Yogurt.Controllers
         [HttpPost("RegisterProfileUser")]
         public async Task<IActionResult> Post([FromBody] InputProfileUserDto inputProfileUserDto)
         {
-            var returns = await _profileUserService.Register(inputProfileUserDto.Nome, inputProfileUserDto.Biografia, inputProfileUserDto.DataNascimento, inputProfileUserDto.Genero, inputProfileUserDto.IdUsuario, inputProfileUserDto.FotoPerfil);
+            var returns = await _profileUserService.Register(inputProfileUserDto.Nome, inputProfileUserDto.Biografia, inputProfileUserDto.DataNascimento.Value, inputProfileUserDto.Genero, inputProfileUserDto.IdUsuario, inputProfileUserDto.IdCidade, inputProfileUserDto.FotoPerfil);
 
             if (returns.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
             {
