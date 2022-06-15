@@ -26,7 +26,7 @@ public sealed class PublicacaoRepository : RepositoryBase<PublicacaoEntity>, IPu
         entity.Legenda = legenda;
         entity.DataCriacao = DateTime.Now;
         var save = await YogurtContext.SaveChangesAsync();
-
+ 
         return save != 0;
     }
 
@@ -47,16 +47,22 @@ public sealed class PublicacaoRepository : RepositoryBase<PublicacaoEntity>, IPu
         return delete != 0;
     }
 
-    public int IncrementarCurtidas(PublicacaoEntity publicacaoEntity)
+    public async Task<int> IncrementarCurtidas(PublicacaoEntity publicacaoEntity)
     {
-        return publicacaoEntity.Curtidas++;
+        var curtidas = publicacaoEntity.Curtidas++;
+        await YogurtContext.SaveChangesAsync();
+
+        return curtidas;
     }
 
-    public int DecrementarCurtidas(PublicacaoEntity publicacaoEntity)
+    public async Task<int> DecrementarCurtidas(PublicacaoEntity publicacaoEntity)
     {
         var curtidas = publicacaoEntity.Curtidas--;
+        
         if (curtidas < 0)
             curtidas = 0;
+        
+        await YogurtContext.SaveChangesAsync();
 
         return curtidas;
     }

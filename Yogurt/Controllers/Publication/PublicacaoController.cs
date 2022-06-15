@@ -25,10 +25,13 @@ public class PublicacaoController : ControllerBase
     }
 
     [HttpPost("CompartilharPublicacaoExistente")]
-    public async Task<IActionResult> PostSharePublication(Guid id, [FromBody] InputPublicacaoDto inputPublicacaoDto)
+    public async Task<IActionResult> PostSharePublication([FromBody] InputCompartilharPublicacaoDto inputCompartilharPublicacaoDtoPublicacaoDto)
     {
-        var a = await _publicacaoService.SharePublication(id, inputPublicacaoDto.IdPerfil);
-        return Ok(a.Objeto);
+        var publication = await _publicacaoService.SharePublication(
+            inputCompartilharPublicacaoDtoPublicacaoDto.IdPublicacaoExistente,
+            inputCompartilharPublicacaoDtoPublicacaoDto.IdPerfil,
+            inputCompartilharPublicacaoDtoPublicacaoDto.Legenda ?? string.Empty);
+        return Ok(publication.Objeto);
     }
 
     [HttpPost("IncrementarCurtidas")]
@@ -58,7 +61,8 @@ public class PublicacaoController : ControllerBase
     {
         var a = await _publicacaoService.GetAll();
 
-        return Ok(a.ListaDeObjetos);
+        //return Ok(a.ListaDeObjetos);
+        return StatusCode((int)a.StatusCode, a.Objeto);
     }
 
     [HttpGet("BuscarPublicacaoPorLegenda")]

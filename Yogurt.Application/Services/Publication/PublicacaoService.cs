@@ -39,7 +39,7 @@ public class PublicacaoService : IPublicacaoService
     {
         var listaDePublicacao = await _publicacaoRepository.GetAll();
 
-        if (listaDePublicacao.Any())
+        if (!listaDePublicacao.Any())
             return new ReturnDto("Publicações não encontradas", StatusCodeEnum.Return.NotFound);
 
         return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess, listaDePublicacao);
@@ -89,7 +89,7 @@ public class PublicacaoService : IPublicacaoService
             throw new InvalidOperationException(
                 "Não foi possível realizar essa operação, recarregue a página e tente novamente");
 
-        return _publicacaoRepository.IncrementarCurtidas(publicacao);
+        return await _publicacaoRepository.IncrementarCurtidas(publicacao);
     }
 
     public async Task<int> DecrementarCurtidas(Guid id)
@@ -99,10 +99,10 @@ public class PublicacaoService : IPublicacaoService
             throw new InvalidOperationException(
                 "Não foi possível realizar essa operação, recarregue a página e tente novamente");
 
-        return _publicacaoRepository.DecrementarCurtidas(publicacao);
+        return await _publicacaoRepository.DecrementarCurtidas(publicacao);
     }
 
-    public async Task<ReturnDto> SharePublication(Guid id, Guid usuarioId)
+    public async Task<ReturnDto> SharePublication(Guid id, Guid usuarioId, string legenda)
     {
         var publication = await _publicacaoRepository.GetById(id);
 
@@ -112,6 +112,7 @@ public class PublicacaoService : IPublicacaoService
         publication.Curtidas = 0;
         publication.DataCriacao = DateTime.Now;
         publication.IdPerfil = usuarioId;
+        publication.Legenda = legenda;
 
         await _publicacaoRepository.Insert(publication);
 

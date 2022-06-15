@@ -13,7 +13,7 @@ public interface IPublicacaoRepository : IRepositoryAsync<PublicacaoEntity>
 
     public Task<bool> Delete(Guid id);
 
-    int IncrementarCurtidas(PublicacaoEntity publicacaoEntity);
+    Task<int> IncrementarCurtidas(PublicacaoEntity publicacaoEntity);
 
-    int DecrementarCurtidas(PublicacaoEntity publicacao);
+    Task<int> DecrementarCurtidas(PublicacaoEntity publicacao);
 }
