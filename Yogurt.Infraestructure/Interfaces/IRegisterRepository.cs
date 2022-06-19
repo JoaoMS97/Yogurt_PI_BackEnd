@@ -12,6 +12,8 @@ namespace Yogurt.Infraestructure.Interfaces
     {
         Task<Guid> InsertUser(UserEntity entity);
 
-        Task InsertProfile(ProfileUserEntity entity);
+        Task<Guid> InsertProfile(ProfileUserEntity entity);
+
+        Task InsertConnect(Guid id);
     }
 }

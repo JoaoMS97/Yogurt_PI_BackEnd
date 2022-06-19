@@ -31,9 +31,17 @@ namespace Yogurt.Infraestructure.Repositories
         }
 
 
-        public async Task InsertProfile(ProfileUserEntity entity)
+        public async Task<Guid> InsertProfile(ProfileUserEntity entity)
         {
             await _yogurtContext.Perfil.AddAsync(entity);
+            await _yogurtContext.SaveChangesAsync();
+
+            return _yogurtContext.Perfil.FirstOrDefault(x=> x.IdUsuario == entity.IdUsuario).Id;
+        }
+
+        public async Task InsertConnect(Guid id)
+        {
+            await _yogurtContext.Amizade.AddAsync(new FriendEntity() { IdPerfil =  id });
             await _yogurtContext.SaveChangesAsync();
         }
 

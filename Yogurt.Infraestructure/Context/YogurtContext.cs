@@ -23,6 +23,7 @@ namespace Yogurt.Infraestructure.Context
         public DbSet<StatesEntity> Estado { get; set; }
         public DbSet<FriendEntity> Amizade { get; set; }
         public DbSet<ConnectEntity> Conectar { get; set; }
+        public DbSet<ConnectivityEntity> Conectividade { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

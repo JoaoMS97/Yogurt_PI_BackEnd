@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Yogurt.Application.Interfaces;
+using Yogurt.Application.Utils;
 using Yogurt.Dto;
 
 namespace Yogurt.Controllers
@@ -8,21 +9,39 @@ namespace Yogurt.Controllers
     [Route("[controller]")]
     public class RegisterFrontController:ControllerBase
     {
-        private readonly IRegisterService _registerServicee;
+        private readonly IRegisterService _registerService;
 
-        public RegisterFrontController(IRegisterService registerServicee)
+        private readonly IUserService _userService;
+
+
+        public RegisterFrontController(IRegisterService registerServicee, IUserService userService)
         {
-            _registerServicee = registerServicee;
+            _registerService = registerServicee;
+            _userService = userService;
         }
 
 
-        //[HttpPost("Register")]
-        //public async Task<IActionResult> Post([FromBody] RegisterDto registerDto)
-        //{
-        //    var result = await _registerServicee.Register(registerDto);
+        [HttpPost("RegisterAll")]
+        public async Task<IActionResult> Post([FromBody] RegisterDto registerDto)
+        {
+            var resultUser = await _userService.Register(registerDto.Email,registerDto.Senha, registerDto.Username, registerDto.Telefone);
+
+            if (resultUser.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return BadRequest(resultUser.Message);
+            }
+
+            var user = Guid.Parse(resultUser.ListaDeObjetos.First().ToString());
+
+            var resultPerfil = await _registerService.Register(user, registerDto.Nome, registerDto.DataNascimento.Value,registerDto.Genero);
 
 
-        //    return Ok();
-        //}
+            if (resultUser.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return BadRequest(resultPerfil.Message);
+            }
+
+            return Ok();
+        }
     }
 }

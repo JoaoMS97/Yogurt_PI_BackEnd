@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Yogurt.Application.Interfaces;
 
 namespace Yogurt.Controllers
 {
@@ -6,15 +7,33 @@ namespace Yogurt.Controllers
     [Route("[Controller]")]
     public class FriendController: ControllerBase
     {
-        /*private readonly ICityService _cityService;
+        private readonly IFriendService _Service;
 
-        public CityController(ICityService cityService)
+        public FriendController(IFriendService service)
         {
-            _cityService = cityService;
+            _Service = service;
         }
 
-        [HttpGet("GetCity")]
-        public async Task<IActionResult> GetCity() => Ok(await _cityService.GetAll());*/
+        [HttpPost("InsertFriend")]
+        public async Task<IActionResult> InsertFriend(Guid idPerfil, Guid idPerfilEsperado)
+        {
+
+            return Ok();
+        }
+
+        [HttpDelete("DeleteFriend")]
+        public async Task<IActionResult> DeleteFriend(Guid idPerfil, Guid idPerfilEsperado)
+        {
+
+            return Ok();
+        }
+
+        [HttpGet("GetFriend")]
+        public async Task<IActionResult> GetFriend(Guid idPerfil, Guid idPerfilEsperado)
+        {
+
+            return Ok();
+        }
 
     }
 }

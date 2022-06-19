@@ -9,6 +9,6 @@ namespace Yogurt.Application.Interfaces
 {
     public interface IRegisterService
     {
-     //   Task<ReturnDto> Register(object usuario);
+        Task<ReturnDto> Register(Guid idUser, string? nome, DateTime? dataNascimento, string? genero);
     }
 }

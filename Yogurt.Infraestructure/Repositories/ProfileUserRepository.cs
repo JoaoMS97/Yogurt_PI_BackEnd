@@ -15,7 +15,7 @@ namespace Yogurt.Infraestructure.Repositories
 
         public async Task<ProfileUserEntity> GetById(Guid id)
         {
-            return (await YogurtContext.Set<ProfileUserEntity>().FirstOrDefaultAsync(x => x.Id == id))!;
+            return (await YogurtContext.Set<ProfileUserEntity>().FirstOrDefaultAsync(x => x.Id == id));
         }
 
         public async Task<ProfileUserEntity?> GetByUserName(string userName)
