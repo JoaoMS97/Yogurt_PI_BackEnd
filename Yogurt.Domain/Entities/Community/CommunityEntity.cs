@@ -24,6 +24,8 @@ namespace Yogurt.Domain.Entities.ComunidadeEntity
 
         public virtual ICollection<PublicacaoEntity> Publicacoes { get; set; }
 
+        public virtual ICollection<ConnectivityEntity> Conectividades { get; set; }
+
         public CommunityEntity(Guid idCriador, Guid idCategoriaComunidade, string? nome, string? legenda, byte[] fotoComunidade, DateTime dataCriacao)
         {
             IdCriador = idCriador;

@@ -84,7 +84,9 @@ namespace Yogurt.Application.Services.User
 
             await _usuarioRepository.Insert(new UserEntity(email, Utils.Utils.RetornarHash(password), $"@{userName}", telefone));
 
-            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
+            var user = _usuarioRepository.GetByUsername($"@{userName}");
+
+            return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess, user.Id);
         }
 
         public async Task<ReturnDto> VerifyToken(string token, string password)

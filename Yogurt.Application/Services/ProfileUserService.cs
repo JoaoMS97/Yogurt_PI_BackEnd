@@ -19,7 +19,7 @@ namespace Yogurt.Application.Services
         {
             _profileUserRepository = repository;
         }
-        public async Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, char? genero, Guid idUsuario, int idCidade, byte[]? fotoPerfil)
+        public async Task<ReturnDto> Register(string userName, string biography, DateTime dataNascimento, string? genero, Guid idUsuario, int idCidade, byte[]? fotoPerfil)
         {
             if (string.IsNullOrEmpty(userName))
             {

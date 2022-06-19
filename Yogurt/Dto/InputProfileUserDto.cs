@@ -14,7 +14,7 @@
 
         public string? Biografia { get; set; }
 
-        public char Genero { get; set; }
+        public string? Genero { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@
 
         public string? Email{ get; set; }
 
-        public char? Genero { get; set; }
+        public string? Genero { get; set; }
 
         public DateTime? DataNascimento { get; set; }
 

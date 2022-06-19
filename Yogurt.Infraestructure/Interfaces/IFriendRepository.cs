@@ -8,6 +8,6 @@ namespace Yogurt.Infraestructure.Interfaces
 {
     public interface IFriendRepository
     {
-        //Task<List<object?>> GetFriends(Guid idProfile);
+
     }
 }

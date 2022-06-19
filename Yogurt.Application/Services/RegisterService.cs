@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Yogurt.Application.Dto;
 using Yogurt.Application.Interfaces;
 using Yogurt.Application.Utils;
+using Yogurt.Domain.Entities;
 using Yogurt.Domain.Entities.User;
 using Yogurt.Infraestructure.Interfaces;
 
@@ -13,43 +14,61 @@ namespace Yogurt.Application.Services
 {
     public class RegisterService: IRegisterService
     {
-        //private readonly IRegisterRepository _registerRepository;
+        private readonly IRegisterRepository _registerRepository;
 
-        //public RegisterService(IRegisterRepository repository)
-        //{
-        //    _registerRepository = repository;
-        //}
+        public RegisterService(IRegisterRepository repository)
+        {
+            _registerRepository = repository;
+        }
 
-        //public async Task<ReturnDto> Register( usuario)
+        public async Task<ReturnDto> Register(Guid idUser, string? nome, DateTime? dataNascimento, string? genero)
+        {
+       
+            if (dataNascimento.HasValue)
+            {
+                if (dataNascimento > DateTime.Today)
+                {
+                    return new ReturnDto("A Data de Nascimento não pode ser superior a data atual.", StatusCodeEnum.Return.BadRequest);
+                }
 
-        //{
-        //    if (string.IsNullOrEmpty() || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username) || telefone == null)
-        //    {
-        //        return new ReturnDto("Os campos Email, Senha, UserName e Telefone não podem ser nulos.",
-        //            StatusCodeEnum.Return.NotFound);
-        //    }
+                if (dataNascimento < new DateTime(1899 / 12 / 31))
+                {
+                    return new ReturnDto("A Data de Nascimento não pode ser inferior ao ano de 1900.", StatusCodeEnum.Return.BadRequest);
+                }
+            }
 
-        //    if (username.Length < 3)
-        //    {
-        //        return new ReturnDto("O Username não pode conter menos de 3 caractéres.", StatusCodeEnum.Return.BadRequest);
-        //    }
+            if (!string.IsNullOrEmpty(genero))
+            {
+                if (genero.ToUpper() != "F" || genero != "M")
+                {
+                    return new ReturnDto("Inicial de gênero incorreta.", StatusCodeEnum.Return.BadRequest);
+                }
+            }
 
-        //    if (password.Length < 8)
-        //    {
-        //        return new ReturnDto("A senha não pode conter menos de 8 caractéres.", StatusCodeEnum.Return.BadRequest);
-        //    }
+            if (string.IsNullOrEmpty(nome))
+            {
+                return new ReturnDto("Nome está nulo!", StatusCodeEnum.Return.BadRequest);
+            }
+            try
+            {
+                var entity = new ProfileUserEntity()
+                {
+                    IdUsuario = idUser,
+                    Nome = nome,
+                    Genero = genero,
+                    DataNascimento = dataNascimento
+                };
 
-        //    if (!Utils.Utils.VerificarEmail(email))
-        //    {
-        //        return new ReturnDto("O email informado é invalido! por favor, informe um email válido.",
-        //            StatusCodeEnum.Return.NotFound);
-        //    }
+                var profileId = await _registerRepository.InsertProfile(entity);
 
-        //    var user = await _registerRepository.InsertUser(new UserEntity(email, Utils.Utils.RetornarHash(password), $"@{username}", telefone));
+                await _registerRepository.InsertConnect(profileId);
 
-
-
-        //    return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
-        //}
+                return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
+            }
+            catch
+            {
+                return new ReturnDto("Ocorreu um erro inesperado!", StatusCodeEnum.Return.BadRequest);
+            }         
+        }
     }
 }

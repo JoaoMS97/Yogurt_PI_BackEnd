@@ -58,6 +58,9 @@ builder.Services.AddScoped<IProfileUserRepository, ProfileUserRepository>();
 builder.Services.AddScoped<IFriendService, FriendService>();
 builder.Services.AddScoped<IFriendRepository, FriendRepository>();
 
+builder.Services.AddScoped<IConnectivityService, ConnectivityService>();
+builder.Services.AddScoped<IConnectivityRepository, ConnectivityRepository>();
+
 builder.Services.AddDbContext<YogurtContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
