@@ -31,7 +31,7 @@ namespace Yogurt.Controllers
                 return BadRequest(resultUser.Message);
             }
 
-            var user = Guid.Parse(resultUser.ListaDeObjetos.First().ToString());
+            var user = Guid.Parse(resultUser.Objeto.ToString());
 
             var resultPerfil = await _registerService.Register(user, registerDto.Nome, registerDto.DataNascimento.Value,registerDto.Genero);
 

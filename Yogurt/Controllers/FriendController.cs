@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Yogurt.Application.Interfaces;
+using Yogurt.Application.Utils;
 
 namespace Yogurt.Controllers
 {
@@ -7,30 +8,72 @@ namespace Yogurt.Controllers
     [Route("[Controller]")]
     public class FriendController: ControllerBase
     {
-        private readonly IFriendService _Service;
+        private readonly IFriendService _service;
 
         public FriendController(IFriendService service)
         {
-            _Service = service;
+            _service = service;
         }
 
-        [HttpPost("InsertFriend")]
-        public async Task<IActionResult> InsertFriend(Guid idPerfil, Guid idPerfilEsperado)
+        [HttpPost("InsertFriendConnect")]
+        public async Task<IActionResult> InsertFriendConnect(Guid? idPerfil, Guid? idPerfilEsperado)
         {
+            var result = await _service.InsertFriend(idPerfil, idPerfilEsperado);
 
-            return Ok();
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.NotFound))
+            {
+                return NotFound(result.Message);
+            }
+
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return NotFound(result.Message);
+            }
+
+            return Ok(result.Message);
         }
 
         [HttpDelete("DeleteFriend")]
-        public async Task<IActionResult> DeleteFriend(Guid idPerfil, Guid idPerfilEsperado)
+        public async Task<IActionResult> DeleteConnect(Guid? idConnect)
         {
 
-            return Ok();
+            var result = await _service.DeleteFriend(idConnect);
+
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.NotFound))
+            {
+                return NotFound(result.Message);
+            }
+
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return NotFound(result.Message);
+            }
+
+            return Ok(result.Message);
         }
 
         [HttpGet("GetFriend")]
-        public async Task<IActionResult> GetFriend(Guid idPerfil, Guid idPerfilEsperado)
+        public async Task<IActionResult> GetAllConnect(Guid? idPerfil)
         {
+            var result = await _service.GetFriend(idPerfil);
+
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return NotFound(result.Message);
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost("InsertPointFriend")]
+        public async Task<IActionResult> InsertPointFriend(Guid? idPerfilPretendido)
+        {
+            var result = await _service.InsertPointPerfil(idPerfilPretendido);
+
+            if (result.StatusCode.Equals(StatusCodeEnum.Return.BadRequest))
+            {
+                return NotFound(result.Message);
+            }
 
             return Ok();
         }

@@ -9,6 +9,12 @@ namespace Yogurt.Application.Interfaces
 {
     public interface IFriendService
     {
-        //Task<ReturnDto> InsertFriend(Guid? idPerfil, Guid? idPerfilPretendido);
+        Task<ReturnDto> DeleteFriend(Guid? idConnect);
+
+        Task<ReturnDto> InsertFriend(Guid? idPerfil, Guid? idPerfilPretendido);
+
+        Task<ReturnDto> GetFriend(Guid? idPerfil);
+
+        Task<ReturnDto> InsertPointPerfil(Guid? idPerfilPretendido);
     }
 }

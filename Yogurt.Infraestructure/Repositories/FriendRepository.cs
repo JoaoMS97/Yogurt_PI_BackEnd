@@ -17,9 +17,20 @@ namespace Yogurt.Infraestructure.Repositories
 
         }
 
-        //public async Task<> GetFriend(Guid )
-        //{
+        public async Task<FriendEntity?> CatchFriend(Guid id)
+        {
+            return YogurtContext.Amizade.FirstOrDefault(x => x.IdPerfil == id);
+        }
 
-        //}
+        public async Task<List<ConnectEntity?>> GetAllConnect(Guid id)
+        {
+            return  YogurtContext.Conectar.Where(x => x.IdPerfil == id).ToList();
+        }
+
+        public async Task InsertFriend(FriendEntity entity)
+        {
+            await YogurtContext.Amizade.AddAsync(entity);
+            await YogurtContext.SaveChangesAsync();
+        }
     }
 }
