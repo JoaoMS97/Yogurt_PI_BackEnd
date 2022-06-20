@@ -51,9 +51,6 @@ namespace Yogurt.Infraestructure.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("IdCompartilhamento")
-                        .HasColumnType("char(36)");
-
                     b.Property<Guid>("IdPublicacao")
                         .HasColumnType("char(36)");
 
@@ -61,6 +58,8 @@ namespace Yogurt.Infraestructure.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdPublicacao");
 
                     b.ToTable("Comentarios");
                 });
@@ -167,7 +166,7 @@ namespace Yogurt.Infraestructure.Migrations
 
                     b.HasIndex("IdPublicacao");
 
-                    b.ToTable("Arquivos");
+                    b.ToTable("Arquivo");
                 });
 
             modelBuilder.Entity("Yogurt.Domain.Entities.FriendEntity", b =>
@@ -198,16 +197,16 @@ namespace Yogurt.Infraestructure.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("DataNascimento")
+                    b.Property<DateTime?>("DataNascimento")
                         .HasColumnType("datetime(6)");
 
                     b.Property<byte[]>("FotoPerfil")
                         .HasColumnType("longblob");
 
                     b.Property<string>("Genero")
-                        .HasColumnType("varchar(1)");
+                        .HasColumnType("longtext");
 
-                    b.Property<int>("IdCidade")
+                    b.Property<int?>("IdCidade")
                         .HasColumnType("int");
 
                     b.Property<Guid>("IdUsuario")
@@ -274,6 +273,8 @@ namespace Yogurt.Infraestructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdComentario");
+
                     b.ToTable("Resposta");
                 });
 
@@ -331,6 +332,17 @@ namespace Yogurt.Infraestructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Estado");
+                });
+
+            modelBuilder.Entity("Yogurt.Domain.Entities.Comment.CommentEntity", b =>
+                {
+                    b.HasOne("Yogurt.Domain.Entities.Publication.PublicacaoEntity", "PublicacaoEntity")
+                        .WithMany("CommentEntities")
+                        .HasForeignKey("IdPublicacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PublicacaoEntity");
                 });
 
             modelBuilder.Entity("Yogurt.Domain.Entities.ConnectEntity", b =>
@@ -397,9 +409,7 @@ namespace Yogurt.Infraestructure.Migrations
                 {
                     b.HasOne("Yogurt.Domain.Entities.CityEntity", "Cidade")
                         .WithMany("Perfis")
-                        .HasForeignKey("IdCidade")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCidade");
 
                     b.HasOne("Yogurt.Domain.Entities.User.UserEntity", "Usuario")
                         .WithOne("Perfil")
@@ -429,9 +439,25 @@ namespace Yogurt.Infraestructure.Migrations
                     b.Navigation("Perfil");
                 });
 
+            modelBuilder.Entity("Yogurt.Domain.Entities.ReplyComment.ReplyCommentEntity", b =>
+                {
+                    b.HasOne("Yogurt.Domain.Entities.Comment.CommentEntity", "comment")
+                        .WithMany("ReplyCommentEntities")
+                        .HasForeignKey("IdComentario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("comment");
+                });
+
             modelBuilder.Entity("Yogurt.Domain.Entities.CityEntity", b =>
                 {
                     b.Navigation("Perfis");
+                });
+
+            modelBuilder.Entity("Yogurt.Domain.Entities.Comment.CommentEntity", b =>
+                {
+                    b.Navigation("ReplyCommentEntities");
                 });
 
             modelBuilder.Entity("Yogurt.Domain.Entities.ComunidadeEntity.CommunityEntity", b =>
@@ -459,6 +485,8 @@ namespace Yogurt.Infraestructure.Migrations
 
             modelBuilder.Entity("Yogurt.Domain.Entities.Publication.PublicacaoEntity", b =>
                 {
+                    b.Navigation("CommentEntities");
+
                     b.Navigation("FileEntities");
                 });
 

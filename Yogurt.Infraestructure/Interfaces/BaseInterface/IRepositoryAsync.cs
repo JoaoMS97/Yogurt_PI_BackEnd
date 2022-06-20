@@ -1,4 +1,4 @@
-﻿namespace Yogurt.Infraestructure.Interfaces.BaseInterface
+﻿namespace Yogurt.Infraestructure.Interfaces
 {
     public interface IRepositoryAsync<T>
     {

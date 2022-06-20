@@ -1,26 +1,15 @@
 using Yogurt.Application.Interfaces;
 using Yogurt.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
-using Yogurt.Application.Interfaces.Comment;
-using Yogurt.Application.Interfaces.Publication;
-using Yogurt.Application.Interfaces.ReplyComment;
-using Yogurt.Application.Services.User;
-using Yogurt.Application.Services.Comment;
-using Yogurt.Application.Services.Publication;
-using Yogurt.Application.Services.ReplyComment;
-using Yogurt.Infraestructure.Interfaces.Comment;
 using Yogurt.Infraestructure.Interfaces.Publication;
-using Yogurt.Infraestructure.Interfaces.ReplyComment;
-using Yogurt.Infraestructure.Interfaces.User;
-using Yogurt.Infraestructure.Repositories.Comment;
-using Yogurt.Infraestructure.Repositories.Publication;
-using Yogurt.Infraestructure.Repositories.ReplyComment;
-using Yogurt.Infraestructure.Repositories.User;
 using Yogurt.Application.Services;
 using Yogurt.Infraestructure.Interfaces;
 using Yogurt.Infraestructure.Repositories;
-using Yogurt.Application.Services.Community;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using Yogurt.Application.Interfaces.Publication;
+using Yogurt.Application.Services.User;
+using Yogurt.Infraestructure.Interfaces.User;
+using Yogurt.Infraestructure.Repositories.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,6 +49,9 @@ builder.Services.AddScoped<IFriendRepository, FriendRepository>();
 
 builder.Services.AddScoped<IConnectivityService, ConnectivityService>();
 builder.Services.AddScoped<IConnectivityRepository, ConnectivityRepository>();
+
+builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
 
 builder.Services.AddDbContext<YogurtContext>(options =>
 {

@@ -1,5 +1,4 @@
 ﻿using Yogurt.Domain.Entities;
-using Yogurt.Infraestructure.Interfaces.BaseInterface;
 
 namespace Yogurt.Infraestructure.Interfaces
 {
@@ -19,7 +18,7 @@ namespace Yogurt.Infraestructure.Interfaces
 
         void UpdateBiography(string? biography, ProfileUserEntity entity);
 
-        //void UpdateCity(string city, ProfileUserEntity entity);
+        void UpdateCity(int? city, ProfileUserEntity entity);
 
         void UpdateProfilePhoto(byte[]? profilePhoto, ProfileUserEntity entity);
     }

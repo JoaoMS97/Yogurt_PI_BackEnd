@@ -8,7 +8,6 @@ using Yogurt.Application.Interfaces;
 using Yogurt.Application.Utils;
 using Yogurt.Domain.Entities;
 using Yogurt.Infraestructure.Interfaces;
-using Yogurt.Infraestructure.Interfaces.Comment;
 
 namespace Yogurt.Application.Services
 {

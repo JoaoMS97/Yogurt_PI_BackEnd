@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Yogurt.Domain.Entities.Base;
 using Yogurt.Infraestructure.Context;
-using Yogurt.Infraestructure.Interfaces.BaseInterface;
+using Yogurt.Infraestructure.Interfaces;
 
 namespace Yogurt.Infraestructure.Repositories.BaseRepository
 {

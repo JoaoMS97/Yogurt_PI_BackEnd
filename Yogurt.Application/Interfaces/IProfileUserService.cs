@@ -17,6 +17,6 @@ namespace Yogurt.Application.Interfaces
 
         Task<ReturnDto> AlterProfilePhoto(byte[]? photoProfile, Guid idPerfil);
 
-        Task<ReturnDto> AlterCity(string city, Guid idPerfil);
+        Task<ReturnDto> AlterCity(int? city, Guid idPerfil);
     }
 }

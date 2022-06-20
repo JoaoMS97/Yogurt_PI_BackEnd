@@ -139,9 +139,9 @@ namespace Yogurt.Application.Services
             return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }
 
-        public async Task<ReturnDto> AlterCity(string city, Guid idPerfil)
+        public async Task<ReturnDto> AlterCity(int? city, Guid idPerfil)
         {
-            if (string.IsNullOrEmpty(city))
+            if (city == null)
             {
                 return new ReturnDto("Você precisa informar uma cidade!", StatusCodeEnum.Return.BadRequest);
             }
@@ -158,7 +158,7 @@ namespace Yogurt.Application.Services
                 return new ReturnDto("Registro não encontrado.", StatusCodeEnum.Return.BadRequest);
             }
 
-            //_profileUserRepository.UpdateCity(city, result);
+            _profileUserRepository.UpdateCity(city, result);
 
             return new ReturnDto("Sucesso", StatusCodeEnum.Return.Sucess);
         }

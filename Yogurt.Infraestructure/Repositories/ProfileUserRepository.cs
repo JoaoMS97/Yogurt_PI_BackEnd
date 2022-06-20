@@ -73,23 +73,23 @@ namespace Yogurt.Infraestructure.Repositories
             }
         }
 
-        //public void UpdateCity(string city, ProfileUserEntity entity)
-        //{
-        //   try
-        //    {
-        //        var result = YogurtContext.Perfil.FirstOrDefault(item => item.Id == entity.Id);
+        public void UpdateCity(int? city, ProfileUserEntity entity)
+        {
+            try
+            {
+                var result = YogurtContext.Perfil.FirstOrDefault(item => item.Id == entity.Id);
 
-        //       if (entity != null)
-        //        {
-        //           entity.IdCidade = city;
-        //           YogurtContext.SaveChanges();
-        //       }
-        //    }
-        //    catch (Exception ex)
-        //  {
-        //        throw new Exception($"Erro ao salvar o município.");
-        //    }
-        //}
+                if (entity != null)
+                {
+                    entity.IdCidade = city;
+                    YogurtContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao salvar o município.");
+            }
+        }
 
         public void UpdateProfilePhoto(byte[]? profilePhoto, ProfileUserEntity entity)
         {

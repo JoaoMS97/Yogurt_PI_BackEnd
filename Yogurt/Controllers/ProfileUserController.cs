@@ -84,7 +84,7 @@ namespace Yogurt.Controllers
         }
 
         [HttpPatch("AlterCity")]
-        public async Task<IActionResult> AlterCity(string city, Guid idPerfil)
+        public async Task<IActionResult> AlterCity(int? city, Guid idPerfil)
         {
             var returns = await _profileUserService.AlterCity(city, idPerfil);
 

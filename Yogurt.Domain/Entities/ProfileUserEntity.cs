@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Yogurt.Domain.Entities.Base;
-using Yogurt.Domain.Entities.Publication;
 using Yogurt.Domain.Entities.User;
 
 namespace Yogurt.Domain.Entities
@@ -27,7 +21,7 @@ namespace Yogurt.Domain.Entities
 
         public Guid IdUsuario { get; set; }
 
-        public int IdCidade { get; set; }
+        public int? IdCidade { get; set; }
 
 
         [ForeignKey("IdUsuario")]
